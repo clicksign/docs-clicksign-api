@@ -19,7 +19,7 @@ Este repositório contém collections para facilitar o teste e a integração co
 2. Abra o Postman.
 3. Vá até o menu **File > Import**.
 4. Selecione o arquivo baixado e importe.
-5. Importante também as variáveis de ambiente `Clicksign_Postman_Environment.json`.
+5. Importe também as variáveis de ambiente `Clicksign_Postman_Environment.json`.
 
 ### **Insomnia**
 
