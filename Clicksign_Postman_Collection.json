@@ -1,0 +1,1927 @@
+{
+	"info": {
+		"_postman_id": "6a95c30a-ee16-4799-9a36-eea4c8f25b26",
+		"name": "Clicksign API v3.0",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29089911",
+		"_collection_link": "https://clicksign-api.postman.co/workspace/Clicksign-API-Workspace~84a703ae-79f4-4d32-9041-9b3a0ad61972/collection/29089911-6a95c30a-ee16-4799-9a36-eea4c8f25b26?action=share&source=collection_link&creator=29089911"
+	},
+	"item": [
+		{
+			"name": "Fluxo Básico",
+			"item": [
+				{
+					"name": "Criar Envelope",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let json = pm.response.json();",
+									"",
+									"pm.environment.set(\"envelope_id\", json.data.id);",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{access_token}}",
+								"type": "default"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/vnd.api+json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"data\": {\r\n    \"type\": \"envelopes\",\r\n    \"attributes\": {\r\n        \"name\": \"Meu Primeiro Envelope\",\r\n        \"locale\": \"pt-BR\",\r\n        \"auto_close\": true,\r\n        \"remind_interval\": 3,\r\n        \"block_after_refusal\": true,\r\n        \"deadline_at\": \"2025-01-31T00:00:00.000-03:00\"\r\n    }\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{host}}/api/v3/envelopes",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v3",
+								"envelopes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Criar Documento",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let json = pm.response.json();",
+									"",
+									"pm.environment.set(\"document_id\", json.data.id);",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{access_token}}",
+								"type": "default"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/vnd.api+json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"data\": {\r\n    \"type\": \"documents\",\r\n    \"attributes\": {\r\n        \"filename\": \"MeuPrimeiroDocumento.pdf\",\r\n        \"content_base64\": \"{{content_base64}}\",\r\n        \"metadata\": {\r\n            \"type\": \"private\",\r\n            \"id\": 1,\r\n            \"user\": 441\r\n        }\r\n    }\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{host}}/api/v3/envelopes/{{envelope_id}}/documents",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v3",
+								"envelopes",
+								"{{envelope_id}}",
+								"documents"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Criar Signatário",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let json = pm.response.json();",
+									"",
+									"pm.environment.set(\"signer_id\", json.data.id);",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{access_token}}",
+								"type": "default"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/vnd.api+json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"data\": {\r\n        \"type\": \"signers\",\r\n        \"attributes\": {\r\n            \"name\": \"Nome com Sobrenome\",\r\n            \"email\": \"nome.sobrenome@example.com\",\r\n            \"birthday\": \"2000-01-01\",\r\n            \"phone_number\": null,\r\n            \"has_documentation\": true,\r\n            \"refusable\": false,\r\n            \"group\": 1,\r\n            \"communicate_events\": {\r\n                \"document_signed\": \"email\",\r\n                \"signature_request\": \"email\",\r\n                \"signature_reminder\": \"email\"\r\n            }\r\n        }\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{host}}/api/v3/envelopes/{{envelope_id}}/signers",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v3",
+								"envelopes",
+								"{{envelope_id}}",
+								"signers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adicionar Requisitos (qualificação)",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{access_token}}",
+								"type": "default"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/vnd.api+json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"data\": {\r\n    \"type\": \"requirements\",\r\n    \"attributes\": {\r\n        \"action\": \"agree\",\r\n        \"role\": \"sign\"\r\n    },\r\n    \"relationships\": {\r\n        \"document\":{\r\n            \"data\": { \"type\": \"documents\", \"id\": \"{{document_id}}\"}\r\n        },\r\n        \"signer\":{\r\n            \"data\": { \"type\": \"signers\", \"id\": \"{{signer_id}}\"}\r\n      }\r\n    }\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{host}}/api/v3/envelopes/{{envelope_id}}/requirements",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v3",
+								"envelopes",
+								"{{envelope_id}}",
+								"requirements"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adicionar Requisitos (autenticação)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{access_token}}",
+								"type": "default"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/vnd.api+json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"data\": {\r\n    \"type\": \"requirements\",\r\n    \"attributes\": {\r\n        \"action\": \"provide_evidence\",\r\n        \"auth\": \"email\"\r\n    },\r\n    \"relationships\": {\r\n        \"document\":{\r\n            \"data\": { \"type\": \"documents\", \"id\": \"{{document_id}}\"}\r\n        },\r\n        \"signer\":{\r\n            \"data\": { \"type\": \"signers\", \"id\": \"{{signer_id}}\"}\r\n      }\r\n    }\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{host}}/api/v3/envelopes/{{envelope_id}}/requirements",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v3",
+								"envelopes",
+								"{{envelope_id}}",
+								"requirements"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Envelope",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{access_token}}",
+								"type": "default"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/vnd.api+json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"data\": {\r\n    \"id\": \"{{envelope_id}}\",\r\n    \"type\": \"envelopes\",\r\n    \"attributes\": {\r\n        \"status\": \"running\",\r\n        \"deadline_at\": \"2025-01-30T18:00:00.000-03:00\"\r\n    }\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{host}}/api/v3/envelopes/{{envelope_id}}",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v3",
+								"envelopes",
+								"{{envelope_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Notificar Envelope",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{access_token}}",
+								"type": "default"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/vnd.api+json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"data\": {\r\n    \"type\": \"notifications\",\r\n    \"attributes\": {\r\n\t\t\"message\": \"mensagem de teste\"\r\n    }\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{host}}/api/v3/envelopes/{{envelope_id}}/notifications",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v3",
+								"envelopes",
+								"{{envelope_id}}",
+								"notifications"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Fluxo Básico com Modelos",
+			"item": [
+				{
+					"name": "Criar Modelo",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let json = pm.response.json();",
+									"",
+									"pm.environment.set(\"template_id\", json.data.id);",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{access_token}}",
+								"type": "default"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/vnd.api+json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n  \"data\": {\r\n    \"type\": \"templates\",\r\n    \"attributes\": {\r\n\t    \"name\": \"Meu Primeiro Modelo\",\r\n\t    \"content_base64\": \"{{template_base64}}\",\r\n\t    \"color\": \"#577b8d\"\r\n    }\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{host}}/api/v3/templates",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v3",
+								"templates"
+							],
+							"query": [
+								{
+									"key": "access_token",
+									"value": "f032ea27-6055-4d8a-861d-18cf171564ab",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Criar Envelope",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let json = pm.response.json();",
+									"",
+									"pm.environment.set(\"envelope_id\", json.data.id);",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{access_token}}",
+								"type": "default"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/vnd.api+json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"data\": {\r\n    \"type\": \"envelopes\",\r\n    \"attributes\": {\r\n        \"name\": \"Meu Primeiro Envelope\",\r\n        \"locale\": \"pt-BR\",\r\n        \"auto_close\": true,\r\n        \"remind_interval\": 3,\r\n        \"block_after_refusal\": true,\r\n        \"deadline_at\": \"2025-01-31T00:00:00.000-03:00\"\r\n    }\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{host}}/api/v3/envelopes",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v3",
+								"envelopes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Criar Documento",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let json = pm.response.json();",
+									"",
+									"pm.environment.set(\"document_id\", json.data.id);",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{access_token}}",
+								"type": "default"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/vnd.api+json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"data\":{\r\n    \"type\": \"documents\",\r\n    \"attributes\": {\r\n      \"filename\": \"DocumentoCriadoPorModelo.docx\",\r\n      \"template\": {\r\n        \"key\": \"{{template_id}}\",\r\n        \"data\": {\r\n          \"dia\": \"01\",\r\n          \"mes\": \"01\",\r\n          \"ano\": \"2025\",\r\n          \"razao_social \": \"Clicksign Gestão de Documentos S.A.\"\r\n        },\r\n        \"metadata\": {\r\n          \"key\": \"value\"\r\n        }\r\n      }\r\n    }\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{host}}/api/v3/envelopes/{{envelope_id}}/documents",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v3",
+								"envelopes",
+								"{{envelope_id}}",
+								"documents"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Criar Signatário",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let json = pm.response.json();",
+									"",
+									"pm.environment.set(\"signer_id\", json.data.id);",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{access_token}}",
+								"type": "default"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/vnd.api+json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"data\": {\r\n        \"type\": \"signers\",\r\n        \"attributes\": {\r\n            \"name\": \"Nome com Sobrenome\",\r\n            \"email\": \"nome.sobrenome@example.com\",\r\n            \"birthday\": \"2000-01-01\",\r\n            \"phone_number\": null,\r\n            \"has_documentation\": true,\r\n            \"refusable\": false,\r\n            \"group\": 1,\r\n            \"communicate_events\": {\r\n                \"document_signed\": \"email\",\r\n                \"signature_request\": \"email\",\r\n                \"signature_reminder\": \"email\"\r\n            }\r\n        }\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{host}}/api/v3/envelopes/{{envelope_id}}/signers",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v3",
+								"envelopes",
+								"{{envelope_id}}",
+								"signers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adicionar Requisitos (qualificação)",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{access_token}}",
+								"type": "default"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/vnd.api+json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"data\": {\r\n    \"type\": \"requirements\",\r\n    \"attributes\": {\r\n        \"action\": \"agree\",\r\n        \"role\": \"sign\"\r\n    },\r\n    \"relationships\": {\r\n        \"document\":{\r\n            \"data\": { \"type\": \"documents\", \"id\": \"{{document_id}}\"}\r\n        },\r\n        \"signer\":{\r\n            \"data\": { \"type\": \"signers\", \"id\": \"{{signer_id}}\"}\r\n      }\r\n    }\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{host}}/api/v3/envelopes/{{envelope_id}}/requirements",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v3",
+								"envelopes",
+								"{{envelope_id}}",
+								"requirements"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adicionar Requisitos (autenticação) Copy",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{access_token}}",
+								"type": "default"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/vnd.api+json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"data\": {\r\n    \"type\": \"requirements\",\r\n    \"attributes\": {\r\n        \"action\": \"provide_evidence\",\r\n        \"auth\": \"email\"\r\n    },\r\n    \"relationships\": {\r\n        \"document\":{\r\n            \"data\": { \"type\": \"documents\", \"id\": \"{{document_id}}\"}\r\n        },\r\n        \"signer\":{\r\n            \"data\": { \"type\": \"signers\", \"id\": \"{{signer_id}}\"}\r\n      }\r\n    }\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{host}}/api/v3/envelopes/{{envelope_id}}/requirements",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v3",
+								"envelopes",
+								"{{envelope_id}}",
+								"requirements"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Envelope",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{access_token}}",
+								"type": "default"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/vnd.api+json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"data\": {\r\n    \"id\": \"{{envelope_id}}\",\r\n    \"type\": \"envelopes\",\r\n    \"attributes\": {\r\n        \"status\": \"running\",\r\n        \"deadline_at\": \"2025-01-30T18:00:00.000-03:00\"\r\n    }\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{host}}/api/v3/envelopes/{{envelope_id}}",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v3",
+								"envelopes",
+								"{{envelope_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Notificar Envelope",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{access_token}}",
+								"type": "default"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/vnd.api+json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"data\": {\r\n    \"type\": \"notifications\",\r\n    \"attributes\": {\r\n\t\t\"message\": \"mensagem de teste\"\r\n    }\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{host}}/api/v3/envelopes/{{envelope_id}}/notifications",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v3",
+								"envelopes",
+								"{{envelope_id}}",
+								"notifications"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Complementares",
+			"item": [
+				{
+					"name": "Eventos",
+					"item": [
+						{
+							"name": "Eventos de um Documento",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://{{host}}/api/v3/envelopes/{{envelope_id}}/documents/{{document_id}}/events",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v3",
+										"envelopes",
+										"{{envelope_id}}",
+										"documents",
+										"{{document_id}}",
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Eventos dos Documentos de um Envelope",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://{{host}}/api/v3/envelopes/{{envelope_id}}/events",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v3",
+										"envelopes",
+										"{{envelope_id}}",
+										"events"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Observadores de Assinatura",
+					"item": [
+						{
+							"name": "Listar Observadores do Envelope",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://{{host}}/api/v3/envelopes/{{envelope_id}}/signature_watchers",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v3",
+										"envelopes",
+										"{{envelope_id}}",
+										"signature_watchers"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Criar Observador da Assinatura",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let json = pm.response.json();",
+											"",
+											"pm.environment.set(\"signature_watcher_id\", json.data.id);",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"data\": {\n\t\t\"type\": \"signature_watchers\",\n\t\t\"attributes\": {\n\t\t\t\"email\": \"observador@example.com\",\n\t\t\t\"kind\": \"all_steps\"\n\t\t}\n\t}\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://{{host}}/api/v3/envelopes/{{envelope_id}}/signature_watchers",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v3",
+										"envelopes",
+										"{{envelope_id}}",
+										"signature_watchers"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Detalhes do Observador",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://{{host}}/api/v3/envelopes/{{envelope_id}}/signature_watchers/{{signature_watcher_id}}",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v3",
+										"envelopes",
+										"{{envelope_id}}",
+										"signature_watchers",
+										"{{signature_watcher_id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Excluir Observador",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://{{host}}/api/v3/envelopes/{{envelope_id}}/signature_watchers/{{signature_watcher_id}}",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v3",
+										"envelopes",
+										"{{envelope_id}}",
+										"signature_watchers",
+										"{{signature_watcher_id}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Pastas",
+					"item": [
+						{
+							"name": "Criar Pasta",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let json = pm.response.json();",
+											"",
+											"pm.environment.set(\"folder_id\", json.data.id);",
+											"a"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"data\": {\n\t\t\"type\": \"folders\",\n\t\t\"attributes\": {\n\t\t\t\"name\": \"Pasta Pessoal\"\n\t\t}\n\t}\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://{{host}}/api/v3/folders",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v3",
+										"folders"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Criar SubPasta",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"data\": {\n\t\t\"type\": \"folders\",\n\t\t\"attributes\": {\n\t\t\t\"name\": \"SubPasta Pessoal\"\n\t\t},\n\t\t\"relationships\": {\n\t\t\t\"folder\": {\n\t\t\t\t\"data\": {\n\t\t\t\t\t\"id\": \"{{folder_id}}\",\n\t\t\t\t\t\"type\": \"folders\"\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://{{host}}/api/v3/folders",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v3",
+										"folders"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Definir Pasta do Envelope",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let json = pm.response.json();",
+											"",
+											"pm.environment.set(\"folder_id\", json.data.id);",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"data\": {\n        \"type\": \"envelopes\",\n        \"attributes\": {\n            \"name\": \"Meu Primeiro Envelope\",\n            \"locale\": \"pt-BR\",\n            \"auto_close\": true,\n            \"remind_interval\": 3,\n            \"block_after_refusal\": true,\n            \"deadline_at\": \"2025-01-31T00:00:00.000-03:00\"\n        },\n\t\t\"relationships\": {\n\t\t\t\"folder\": {\n\t\t\t\t\"data\": {\n\t\t\t\t\t\"id\": \"{{folder_id}}\",\n\t\t\t\t\t\"type\": \"folders\"\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://{{host}}/api/v3/envelopes",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v3",
+										"envelopes"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Operações de Requisitos em Massa",
+			"item": [
+				{
+					"name": "Criar Envelope",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let json = pm.response.json();",
+									"",
+									"pm.environment.set(\"envelope_id\", json.data.id);",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{access_token}}",
+								"type": "default"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/vnd.api+json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"data\": {\r\n    \"type\": \"envelopes\",\r\n    \"attributes\": {\r\n        \"name\": \"Meu Primeiro Envelope\",\r\n        \"locale\": \"pt-BR\",\r\n        \"auto_close\": true,\r\n        \"remind_interval\": 3,\r\n        \"block_after_refusal\": true,\r\n        \"deadline_at\": \"2025-01-31T00:00:00.000-03:00\"\r\n    }\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{host}}/api/v3/envelopes",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v3",
+								"envelopes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Criar Documento",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let json = pm.response.json();",
+									"",
+									"pm.environment.set(\"document_id\", json.data.id);",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{access_token}}",
+								"type": "default"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/vnd.api+json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"data\": {\r\n    \"type\": \"documents\",\r\n    \"attributes\": {\r\n        \"filename\": \"MeuPrimeiroDocumento.pdf\",\r\n        \"content_base64\": \"{{content_base64}}\",\r\n        \"metadata\": {\r\n            \"type\": \"private\",\r\n            \"id\": 1,\r\n            \"user\": 441\r\n        }\r\n    }\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{host}}/api/v3/envelopes/{{envelope_id}}/documents",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v3",
+								"envelopes",
+								"{{envelope_id}}",
+								"documents"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Criar Signatário",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let json = pm.response.json();",
+									"",
+									"pm.environment.set(\"signer_id\", json.data.id);",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{access_token}}",
+								"type": "default"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/vnd.api+json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"data\": {\r\n        \"type\": \"signers\",\r\n        \"attributes\": {\r\n            \"name\": \"Nome com Sobrenome\",\r\n            \"email\": \"nome.sobrenome@example.com\",\r\n            \"birthday\": \"2000-01-01\",\r\n            \"phone_number\": null,\r\n            \"has_documentation\": true,\r\n            \"refusable\": false,\r\n            \"group\": 1,\r\n            \"communicate_events\": {\r\n                \"document_signed\": \"email\",\r\n                \"signature_request\": \"email\",\r\n                \"signature_reminder\": \"email\"\r\n            }\r\n        }\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{host}}/api/v3/envelopes/{{envelope_id}}/signers",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v3",
+								"envelopes",
+								"{{envelope_id}}",
+								"signers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adicionar Requisitos (qualificação)",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{access_token}}",
+								"type": "default"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/vnd.api+json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"data\": {\r\n    \"type\": \"requirements\",\r\n    \"attributes\": {\r\n        \"action\": \"agree\",\r\n        \"role\": \"sign\"\r\n    },\r\n    \"relationships\": {\r\n        \"document\":{\r\n            \"data\": { \"type\": \"documents\", \"id\": \"{{document_id}}\"}\r\n        },\r\n        \"signer\":{\r\n            \"data\": { \"type\": \"signers\", \"id\": \"{{signer_id}}\"}\r\n      }\r\n    }\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{host}}/api/v3/envelopes/{{envelope_id}}/requirements",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v3",
+								"envelopes",
+								"{{envelope_id}}",
+								"requirements"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adicionar Requisitos (autenticação)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let json = pm.response.json();",
+									"",
+									"pm.environment.set(\"email_requirement_id\", json.data.id);",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{access_token}}",
+								"type": "default"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/vnd.api+json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"data\": {\r\n    \"type\": \"requirements\",\r\n    \"attributes\": {\r\n        \"action\": \"provide_evidence\",\r\n        \"auth\": \"email\"\r\n    },\r\n    \"relationships\": {\r\n        \"document\":{\r\n            \"data\": { \"type\": \"documents\", \"id\": \"{{document_id}}\"}\r\n        },\r\n        \"signer\":{\r\n            \"data\": { \"type\": \"signers\", \"id\": \"{{signer_id}}\"}\r\n      }\r\n    }\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{host}}/api/v3/envelopes/{{envelope_id}}/requirements",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v3",
+								"envelopes",
+								"{{envelope_id}}",
+								"requirements"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Envelope",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{access_token}}",
+								"type": "default"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/vnd.api+json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"data\": {\r\n    \"id\": \"{{envelope_id}}\",\r\n    \"type\": \"envelopes\",\r\n    \"attributes\": {\r\n        \"status\": \"running\",\r\n        \"deadline_at\": \"2025-01-30T18:00:00.000-03:00\"\r\n    }\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{host}}/api/v3/envelopes/{{envelope_id}}",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v3",
+								"envelopes",
+								"{{envelope_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adicionar Requisitos (autenticação) Copy",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{access_token}}",
+								"type": "default"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/vnd.api+json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"atomic:operations\": [\r\n        {\r\n            \"op\": \"remove\",\r\n            \"ref\": {\r\n                \"type\": \"requirements\",\r\n                \"id\": \"{{email_requirement_id}}\"\r\n            }\r\n        },\r\n        {\r\n            \"op\": \"add\",\r\n            \"data\": {\r\n                \"type\": \"requirements\",\r\n                \"attributes\": {\r\n                    \"action\": \"provide_evidence\",\r\n                    \"auth\": \"icp_brasil\"\r\n                },\r\n                \"relationships\": {\r\n                    \"document\": {\r\n                        \"data\": { \"type\": \"documents\", \"id\": \"{{document_id}}\" }\r\n                    },\r\n                    \"signer\": {\r\n                        \"data\": { \"type\": \"signers\", \"id\": \"{{signer_id}}\" }\r\n                    }\r\n                }\r\n            }\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{host}}/api/v3/envelopes/{{envelope_id}}/bulk_requirements",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v3",
+								"envelopes",
+								"{{envelope_id}}",
+								"bulk_requirements"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Conferir requisitos do envelope",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{access_token}}",
+								"type": "default"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/vnd.api+json",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "https://{{host}}/api/v3/envelopes/{{envelope_id}}/requirements",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v3",
+								"envelopes",
+								"{{envelope_id}}",
+								"requirements"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Gestão de Acesso",
+			"item": [
+				{
+					"name": "Usuários",
+					"item": [
+						{
+							"name": "Listar Usuários",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://{{host}}/api/v3/users",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v3",
+										"users"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Criar Usuário",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let json = pm.response.json();",
+											"",
+											"pm.environment.set(\"user_id\", json.data.id);",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"data\": {\n        \"type\": \"users\",\n        \"attributes\": {\n            \"name\": \"Usuário Teste\",\n            \"email\": \"teste@example.com\",\n            \"phone_number\": \"11966666666\"\n        }\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://{{host}}/api/v3/users",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v3",
+										"users"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Detalhes do Usuário",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://{{host}}/api/v3/users/{{user_id}}",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v3",
+										"users",
+										"{{user_id}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Membros",
+					"item": [
+						{
+							"name": "Listar Membros",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://{{host}}/api/v3/memberships",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v3",
+										"memberships"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Criar Membro",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let json = pm.response.json();",
+											"",
+											"pm.environment.set(\"membership_id\", json.data.id);",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"data\": {\n        \"type\": \"memberships\",\n        \"attributes\": {\n            \"role\": \"guest\",\n            \"consumption_accessible\": false,\n            \"tracking_accessible\": false\n        },\n        \"relationships\": {\n            \"user\": {\n                \"data\": {\n                    \"type\": \"users\",\n                    \"id\": \"{{user_id}}\"\n                }\n            }\n        }\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://{{host}}/api/v3/memberships",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v3",
+										"memberships"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Editar Membro",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let json = pm.response.json();",
+											"",
+											"pm.environment.set(\"user_id\", json.data.id);",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"data\": {\n        \"type\": \"memberships\",\n        \"attributes\": {\n            \"role\": \"guest\",\n            \"consumption_accessible\": false,\n            \"tracking_accessible\": false\n        }\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://{{host}}/api/v3/memberships/{{membership_id}}",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v3",
+										"memberships",
+										"{{membership_id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Deletar Membro",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://{{host}}/api/v3/memberhips/{{membership_id}}",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v3",
+										"memberhips",
+										"{{membership_id}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
