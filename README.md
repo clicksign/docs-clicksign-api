@@ -6,8 +6,9 @@ Este repositório contém collections para facilitar o teste e a integração co
 
 ## Conteúdo do Repositório
 
-- **Postman Collection**: Arquivo JSON que pode ser importado diretamente no Postman.
-- **Insomnia Collection**: Arquivo YAML que pode ser importado diretamente no Insomnia.
+- **Postman Collection**: Arquivo JSON das collections que pode ser importado diretamente no Postman.
+- **Postman Environment**: Arquivo JSON das variáveis de ambiente que pode ser importado diretamente no Postman.
+- **Insomnia Collection**: Arquivo YAML das collections que pode ser importado diretamente no Insomnia.
 
 ---
 
