@@ -8,7 +8,8 @@ Este repositório contém collections para facilitar o teste e a integração co
 
 - **Postman Collection**: Arquivo JSON das collections que pode ser importado diretamente no Postman.
 - **Postman Environment**: Arquivo JSON das variáveis de ambiente que pode ser importado diretamente no Postman.
-- **Insomnia Collection**: Arquivo YAML das collections que pode ser importado diretamente no Insomnia.
+- **Insomnia Collection**: Arquivo JSON das collections que pode ser importado diretamente no Insomnia.
+- **Insomnia Avançado Collection**: Arquivo JSON com collections de todas versões da API da Clicksign (Sugerido para quem precisa de recursos avançados).
 
 ---
 
