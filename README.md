@@ -25,7 +25,7 @@ Este repositório contém collections para facilitar o teste e a integração co
 
 ### **Insomnia**
 
-1. Faça o download do arquivo `Clicksign_Insomnia_Collection.yaml`.
+1. Faça o download do arquivo `Clicksign_Insomnia_Collection.json`.
 2. Abra o Insomnia.
 3. Clique no menu de Workspaces e selecione **Import/Export > Import Data**.
 4. Escolha a opção **From File** e selecione o arquivo baixado.
