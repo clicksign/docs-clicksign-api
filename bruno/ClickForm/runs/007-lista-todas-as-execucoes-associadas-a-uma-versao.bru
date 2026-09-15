@@ -1,0 +1,11 @@
+meta {
+  name: Lista todas as execuções associadas a uma versão
+  type: http
+  seq: 7
+}
+
+get {
+  url: https://{{host}}/api/v1/versions/{{version_key}}/runs
+  body: none
+  auth: inherit
+}

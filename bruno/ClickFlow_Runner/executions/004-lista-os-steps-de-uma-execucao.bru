@@ -1,0 +1,11 @@
+meta {
+  name: Lista os steps de uma execução
+  type: http
+  seq: 4
+}
+
+get {
+  url: https://{{host}}/api/v1/executions/{{execution_id}}/steps
+  body: none
+  auth: inherit
+}

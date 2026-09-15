@@ -1,0 +1,11 @@
+meta {
+  name: Atualiza contexto, expires_at ou callback_url do run
+  type: http
+  seq: 10
+}
+
+put {
+  url: https://{{host}}/api/v1/versions/{{version_key}}/runs/{{run_key}}
+  body: none
+  auth: inherit
+}

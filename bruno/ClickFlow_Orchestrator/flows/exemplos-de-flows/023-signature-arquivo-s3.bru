@@ -1,0 +1,35 @@
+meta {
+  name: Signature — arquivo S3
+  type: http
+  seq: 23
+}
+
+post {
+  url: https://{{host}}/api/v1/flows
+  body: json
+  auth: inherit
+}
+
+body:json {
+{
+  "name": "Proposta Crédito",
+  "steps": [
+    {
+      "context": {
+        "documents": [
+          {
+            "filename": "contrato-proposta.pdf",
+            "kind": "file",
+            "s3_bucket": "meu-bucket",
+            "s3_key": "caminho/para/contrato.pdf"
+          }
+        ],
+        "settings": {
+          "folder_key": "1fb29ab8-84c4-4856-be37-5fce0f17c11a"
+        }
+      },
+      "type": "signature"
+    }
+  ]
+}
+}

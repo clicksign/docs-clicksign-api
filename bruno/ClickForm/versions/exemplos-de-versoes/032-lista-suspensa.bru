@@ -1,0 +1,46 @@
+meta {
+  name: Lista suspensa
+  type: http
+  seq: 32
+}
+
+post {
+  url: https://{{host}}/api/v1/forms/{{form_key}}/versions
+  body: json
+  auth: inherit
+}
+
+body:json {
+{
+  "settings": {
+    "title": "Atualização de contato",
+    "subtitle": "Por favor, confirme os dados de contato.",
+    "finish_title": "Atualização de dados concluída!",
+    "finish_subtitle": "Em breve nossa equipe entrará em contato.",
+    "finish_info": "Visite nosso site para mais informações."
+  },
+  "fields": [
+    {
+      "label": "Marital status",
+      "type": "select",
+      "placeholder": "Select an option",
+      "help_balloon": "Selecione uma opção na lista suspensa.",
+      "required": true,
+      "order": 1,
+      "step": 0,
+      "options": {
+        "values": [
+          {
+            "label": "Single",
+            "value": "S"
+          },
+          {
+            "label": "Married",
+            "value": "C"
+          }
+        ]
+      }
+    }
+  ]
+}
+}

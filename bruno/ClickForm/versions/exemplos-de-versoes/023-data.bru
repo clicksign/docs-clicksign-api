@@ -1,0 +1,34 @@
+meta {
+  name: Data
+  type: http
+  seq: 23
+}
+
+post {
+  url: https://{{host}}/api/v1/forms/{{form_key}}/versions
+  body: json
+  auth: inherit
+}
+
+body:json {
+{
+  "settings": {
+    "title": "Atualização de contato",
+    "subtitle": "Por favor, confirme os dados de contato.",
+    "finish_title": "Atualização de dados concluída!",
+    "finish_subtitle": "Em breve nossa equipe entrará em contato.",
+    "finish_info": "Visite nosso site para mais informações."
+  },
+  "fields": [
+    {
+      "label": "Birth date",
+      "type": "date",
+      "placeholder": "DD/MM/YYYY",
+      "help_balloon": "Informe uma data válida.",
+      "required": true,
+      "order": 1,
+      "step": 0
+    }
+  ]
+}
+}
