@@ -547,6 +547,15 @@
 								"{{run_key}}"
 							]
 						},
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"context\": {\n    \"nome-completo-59661f5fe933\": {\n      \"value\": \"John Doe\",\n      \"read_only\": false\n    },\n    \"whatsapp-f9c2322fcc74\": {\n      \"value\": \"48999999999\",\n      \"read_only\": false\n    },\n    \"email-6679641e7540\": {\n      \"value\": \"john.doe@developer.com\",\n      \"read_only\": true\n    }\n  },\n  \"expires_at\": \"2026-12-31T23:59:59Z\",\n  \"callback_url\": \"https://erp.cliente.com/callback\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"auth": {
 							"type": "apikey",
 							"apikey": [
