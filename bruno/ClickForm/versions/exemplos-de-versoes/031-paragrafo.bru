@@ -1,0 +1,32 @@
+meta {
+  name: Parágrafo
+  type: http
+  seq: 31
+}
+
+post {
+  url: https://{{host}}/api/v1/forms/{{form_key}}/versions
+  body: json
+  auth: inherit
+}
+
+body:json {
+{
+  "settings": {
+    "title": "Atualização de contato",
+    "subtitle": "Por favor, confirme os dados de contato.",
+    "finish_title": "Atualização de dados concluída!",
+    "finish_subtitle": "Em breve nossa equipe entrará em contato.",
+    "finish_info": "Visite nosso site para mais informações."
+  },
+  "fields": [
+    {
+      "label": "Please review the information below carefully.",
+      "type": "paragraph",
+      "required": false,
+      "order": 1,
+      "step": 0
+    }
+  ]
+}
+}

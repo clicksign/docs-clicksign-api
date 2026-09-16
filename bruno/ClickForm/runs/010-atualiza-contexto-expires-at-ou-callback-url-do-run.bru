@@ -1,0 +1,32 @@
+meta {
+  name: Atualiza contexto, expires_at ou callback_url do run
+  type: http
+  seq: 10
+}
+
+put {
+  url: https://{{host}}/api/v1/versions/{{version_key}}/runs/{{run_key}}
+  body: json
+  auth: inherit
+}
+
+body:json {
+{
+  "context": {
+    "nome-completo-59661f5fe933": {
+      "value": "John Doe",
+      "read_only": false
+    },
+    "whatsapp-f9c2322fcc74": {
+      "value": "48999999999",
+      "read_only": false
+    },
+    "email-6679641e7540": {
+      "value": "john.doe@developer.com",
+      "read_only": true
+    }
+  },
+  "expires_at": "2026-12-31T23:59:59Z",
+  "callback_url": "https://erp.cliente.com/callback"
+}
+}

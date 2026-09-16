@@ -1,0 +1,41 @@
+meta {
+  name: Intervalo numérico
+  type: http
+  seq: 20
+}
+
+post {
+  url: https://{{host}}/api/v1/forms/{{form_key}}/versions
+  body: json
+  auth: inherit
+}
+
+body:json {
+{
+  "settings": {
+    "title": "Atualização de contato",
+    "subtitle": "Por favor, confirme os dados de contato.",
+    "finish_title": "Atualização de dados concluída!",
+    "finish_subtitle": "Em breve nossa equipe entrará em contato.",
+    "finish_info": "Visite nosso site para mais informações."
+  },
+  "fields": [
+    {
+      "label": "Taxa de administração",
+      "type": "number_range",
+      "placeholder": "Taxa de administração",
+      "help_balloon": "Valor numérico com limites mínimo e máximo, casas decimais e mensagens de erro configuráveis.",
+      "required": false,
+      "order": 1,
+      "step": 0,
+      "options": {
+        "min_value": 1.2,
+        "max_value": 4.5,
+        "decimal_places": 2,
+        "min_error_message": "Informe um valor a partir de {min_value} com até {decimal_places} casas decimais.",
+        "max_error_message": "Informe um valor até {max_value} com até {decimal_places} casas decimais."
+      }
+    }
+  ]
+}
+}

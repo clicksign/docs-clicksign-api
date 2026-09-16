@@ -1,0 +1,11 @@
+meta {
+  name: Cancela uma execução em andamento
+  type: http
+  seq: 3
+}
+
+post {
+  url: https://{{host}}/api/v1/executions/{{execution_id}}/cancel
+  body: none
+  auth: inherit
+}

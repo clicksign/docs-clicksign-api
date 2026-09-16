@@ -1,0 +1,54 @@
+meta {
+  name: Cria uma nova versão (schema) do formulário
+  type: http
+  seq: 13
+}
+
+post {
+  url: https://{{host}}/api/v1/forms/{{form_key}}/versions
+  body: json
+  auth: inherit
+}
+
+body:json {
+{
+  "settings": {
+    "title": "Atualização de contato",
+    "subtitle": "Por favor, confirme os dados de contato.",
+    "finish_title": "Atualização de dados concluída!",
+    "finish_subtitle": "Em breve nossa equipe entrará em contato.",
+    "finish_info": "Visite nosso site para mais informações.",
+    "steps": {
+      "0": "Informações pessoais",
+      "1": "Informações de contato"
+    }
+  },
+  "fields": [
+    {
+      "label": "Nome completo",
+      "type": "text",
+      "placeholder": "Maria da Silva",
+      "help_balloon": "Use o mesmo nome do documento.",
+      "required": true,
+      "step": 0,
+      "order": 1
+    },
+    {
+      "label": "Whatsapp",
+      "type": "phone_number",
+      "placeholder": "(11) 99999-9999",
+      "help_balloon": "Inclua o DDD para facilitar o retorno.",
+      "required": true,
+      "step": 1
+    },
+    {
+      "label": "Email",
+      "type": "email",
+      "placeholder": "nome@empresa.com",
+      "help_balloon": "Informe um e-mail válido para contato.",
+      "required": true,
+      "step": 1
+    }
+  ]
+}
+}

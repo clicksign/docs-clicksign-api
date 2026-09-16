@@ -1,0 +1,355 @@
+{
+  "_type": "export",
+  "__export_format": 4,
+  "__export_date": "2026-09-15T20:46:04.601Z",
+  "__export_source": "generate-collections.js",
+  "resources": [
+    {
+      "_type": "workspace",
+      "_id": "wrk_44107742d5d6492d8a32474c599c760f",
+      "name": "ClickFlow Runner",
+      "description": "",
+      "scope": "collection"
+    },
+    {
+      "_type": "environment",
+      "_id": "env_52286a021ad94a2985e3806d669271ee",
+      "parentId": "wrk_44107742d5d6492d8a32474c599c760f",
+      "name": "Base Environment",
+      "data": {},
+      "dataPropertyOrder": null,
+      "color": null,
+      "isPrivate": false,
+      "metaSortKey": 1000000000000
+    },
+    {
+      "_type": "environment",
+      "_id": "env_1dbb4e09182241a4be3b2d910e78c95d",
+      "parentId": "env_52286a021ad94a2985e3806d669271ee",
+      "name": "Sandbox",
+      "data": {
+        "host": "clickflow-runner-sandbox.clicksign.com",
+        "access_token": "",
+        "flow_id": "",
+        "execution_id": "",
+        "form_key": "",
+        "version_key": "",
+        "run_key": ""
+      },
+      "dataPropertyOrder": {
+        "&": [
+          "host",
+          "access_token",
+          "flow_id",
+          "execution_id",
+          "form_key",
+          "version_key",
+          "run_key"
+        ]
+      },
+      "color": "#7d69cb",
+      "isPrivate": false,
+      "metaSortKey": 1000000001000
+    },
+    {
+      "_type": "environment",
+      "_id": "env_d899fe2d3bfa4d1697cb3b2a509859f1",
+      "parentId": "env_52286a021ad94a2985e3806d669271ee",
+      "name": "Produção",
+      "data": {
+        "host": "clickflow-runner.clicksign.com",
+        "access_token": "",
+        "flow_id": "",
+        "execution_id": "",
+        "form_key": "",
+        "version_key": "",
+        "run_key": ""
+      },
+      "dataPropertyOrder": {
+        "&": [
+          "host",
+          "access_token",
+          "flow_id",
+          "execution_id",
+          "form_key",
+          "version_key",
+          "run_key"
+        ]
+      },
+      "color": "#d9534f",
+      "isPrivate": false,
+      "metaSortKey": 1000000002000
+    },
+    {
+      "_type": "request_group",
+      "_id": "fld_3df3337487024ba8b952690320e3e645",
+      "parentId": "wrk_44107742d5d6492d8a32474c599c760f",
+      "name": "Health",
+      "description": "",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": 1000000000000
+    },
+    {
+      "_type": "request",
+      "_id": "req_be73452156204a25b2a46c5b0b886a87",
+      "parentId": "fld_3df3337487024ba8b952690320e3e645",
+      "name": "Health check",
+      "description": "",
+      "url": "https://{{host}}/health",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": 1000000000000,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global"
+    },
+    {
+      "_type": "request_group",
+      "_id": "fld_b81e2c3806394ca9b611106a1312e4ac",
+      "parentId": "wrk_44107742d5d6492d8a32474c599c760f",
+      "name": "Executions",
+      "description": "",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": 1000000000001
+    },
+    {
+      "_type": "request",
+      "_id": "req_781942ad4c0e4683b5f9a811fb086a48",
+      "parentId": "fld_b81e2c3806394ca9b611106a1312e4ac",
+      "name": "Retorna uma execução",
+      "description": "",
+      "url": "https://{{host}}/api/v1/executions/{{execution_id}}",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "{{ access_token }}"
+        }
+      ],
+      "authentication": {
+        "type": "apikey",
+        "disabled": false,
+        "key": "Authorization",
+        "value": "{{ access_token }}",
+        "addTo": "header"
+      },
+      "metaSortKey": 1000000000000,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global"
+    },
+    {
+      "_type": "request",
+      "_id": "req_111b61d28951459d883216f11412c7af",
+      "parentId": "fld_b81e2c3806394ca9b611106a1312e4ac",
+      "name": "Cancela uma execução",
+      "description": "",
+      "url": "https://{{host}}/api/v1/executions/{{execution_id}}/cancel",
+      "method": "POST",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "{{ access_token }}"
+        }
+      ],
+      "authentication": {
+        "type": "apikey",
+        "disabled": false,
+        "key": "Authorization",
+        "value": "{{ access_token }}",
+        "addTo": "header"
+      },
+      "metaSortKey": 1000000000001,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global"
+    },
+    {
+      "_type": "request",
+      "_id": "req_465404d779d04ebaa90f00c3f622035a",
+      "parentId": "fld_b81e2c3806394ca9b611106a1312e4ac",
+      "name": "Lista os steps de uma execução",
+      "description": "",
+      "url": "https://{{host}}/api/v1/executions/{{execution_id}}/steps",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "{{ access_token }}"
+        }
+      ],
+      "authentication": {
+        "type": "apikey",
+        "disabled": false,
+        "key": "Authorization",
+        "value": "{{ access_token }}",
+        "addTo": "header"
+      },
+      "metaSortKey": 1000000000002,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global"
+    },
+    {
+      "_type": "request",
+      "_id": "req_818cd5b08e4240de98f18e5ca7e6933a",
+      "parentId": "fld_b81e2c3806394ca9b611106a1312e4ac",
+      "name": "Inicia execução — WhatsApp",
+      "description": "",
+      "url": "https://{{host}}/api/v1/flows/{{flow_id}}/execute",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"contact\": {\n    \"person_name\": \"Maria da Silva\",\n    \"phone_number\": \"5511999999999\"\n  }\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "{{ access_token }}"
+        }
+      ],
+      "authentication": {
+        "type": "apikey",
+        "disabled": false,
+        "key": "Authorization",
+        "value": "{{ access_token }}",
+        "addTo": "header"
+      },
+      "metaSortKey": 1000000000003,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global"
+    },
+    {
+      "_type": "request",
+      "_id": "req_105c06ac39264a329d8f179b48bc9872",
+      "parentId": "fld_b81e2c3806394ca9b611106a1312e4ac",
+      "name": "Inicia execução — canal API",
+      "description": "",
+      "url": "https://{{host}}/api/v1/flows/{{flow_id}}/execute",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"channel\": \"api\",\n  \"contact\": {\n    \"person_name\": \"Maria da Silva\",\n    \"phone_number\": \"5511999999999\"\n  }\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "{{ access_token }}"
+        }
+      ],
+      "authentication": {
+        "type": "apikey",
+        "disabled": false,
+        "key": "Authorization",
+        "value": "{{ access_token }}",
+        "addTo": "header"
+      },
+      "metaSortKey": 1000000000004,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global"
+    },
+    {
+      "_type": "request",
+      "_id": "req_8f3fbfc4d969438591ce9fb1efa6aa2f",
+      "parentId": "fld_b81e2c3806394ca9b611106a1312e4ac",
+      "name": "Inicia execução — com arquivo (runner_files)",
+      "description": "",
+      "url": "https://{{host}}/api/v1/flows/{{flow_id}}/execute",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"contact\": {\n    \"person_name\": \"Maria da Silva\",\n    \"phone_number\": \"5511999999999\"\n  },\n  \"files\": [\n    {\n      \"key\": \"1\",\n      \"content_base_64\": \"data:application/pdf;base64,JVBERi0xLjQKJeLjz9MKMSAwIG9iago8PAovVHlwZSAvQ2F0YWxvZwovUGFnZXMgMiAwIFIKPj4KZW5kb2JqCjIgMCBvYmoKPDwKL1R5cGUgL1BhZ2VzCi9LaWRzIFszIDAgUl0KL0NvdW50IDEKL01lZGlhQm94IFswIDAgNjEyIDc5Ml0KPj4KZW5kb2JqCjMgMCBvYmoKPDwKL1R5cGUgL1BhZ2UKL1BhcmVudCAyIDAgUgovUmVzb3VyY2VzIDw8Pj4KL0NvbnRlbnRzIDQgMCBSCj4+CmVuZG9iago0IDAgb2JqCjw8Ci9MZW5ndGggNDQKPj4Kc3RyZWFtCkJUCi9GMSAxMiBUZgoxMDAgNzAwIFRkCihTYW1wbGUpIFRqCkVUCmVuZHN0cmVhbQplbmRvYmoKeHJlZgowIDUKMDAwMDAwMDAwMCA2NTUzNSBmCjAwMDAwMDAwMDkgMDAwMDAgbiAKMDAwMDAwMDA1OCAwMDAwMCBuIAowMDAwMDAwMTE1IDAwMDAwIG4gCjAwMDAwMDAyMDQgMDAwMDAgbiAKMDAwMDAwMDI5MyAwMDAwMCBuIAp0cmFpbGVyCjw8Ci9TaXplIDUKL1Jvb3QgMSAwIFIKPj4Kc3RhcnR4cmVmCjM4NQolJUVPRgo=\"\n    }\n  ]\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "{{ access_token }}"
+        }
+      ],
+      "authentication": {
+        "type": "apikey",
+        "disabled": false,
+        "key": "Authorization",
+        "value": "{{ access_token }}",
+        "addTo": "header"
+      },
+      "metaSortKey": 1000000000005,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global"
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+meta {
+  name: Consent — variáveis por step (channel_params)
+  type: http
+  seq: 15
+}
+
+post {
+  url: https://{{host}}/api/v1/flows
+  body: json
+  auth: inherit
+}
+
+body:json {
+{
+  "name": "Proposta Crédito — consent com variáveis",
+  "steps": [
+    {
+      "context": {
+        "channel_params": {
+          "steps": [
+            {
+              "step_id": "apresentacao",
+              "variables": {
+                "body": [
+                  "{{person_name}}",
+                  "Carro Azul",
+                  "{{cpf_form_field}}"
+                ],
+                "header": []
+              }
+            }
+          ]
+        },
+        "channel_type": "whatsapp",
+        "template_id": "seu-template-id"
+      },
+      "type": "consent"
+    }
+  ]
+}
+}

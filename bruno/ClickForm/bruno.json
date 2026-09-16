@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "ClickForm",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}
