@@ -13,13 +13,13 @@ Este repositório contém collections para facilitar o teste e a integração co
 
 ### ClickFlow e ClickForm
 
-Collections da API `/api/v1`. Host padrão: **sandbox**.
+Collections da API `/api/v1`, uma pasta por produto. Host padrão: **sandbox**. A API v3 permanece na raiz.
 
 | Produto | Postman | Insomnia | Bruno |
 |---------|---------|----------|-------|
-| ClickFlow Orchestrator | `ClickFlow_Orchestrator_Postman_Collection.json` + `_Environment.json` | `ClickFlow_Orchestrator_Insomnia_Collection.json` | `bruno/ClickFlow_Orchestrator/` |
-| ClickFlow Runner | `ClickFlow_Runner_Postman_Collection.json` + `_Environment.json` | `ClickFlow_Runner_Insomnia_Collection.json` | `bruno/ClickFlow_Runner/` |
-| ClickForm | `ClickForm_Postman_Collection.json` + `_Environment.json` | `ClickForm_Insomnia_Collection.json` | `bruno/ClickForm/` |
+| ClickFlow Orchestrator | `clickflow/orquestrador/postman/` | `clickflow/orquestrador/insomnia/` | `clickflow/orquestrador/bruno/` |
+| ClickFlow Runner | `clickflow/executor/postman/` | `clickflow/executor/insomnia/` | `clickflow/executor/bruno/` |
+| ClickForm | `clickform/postman/` | `clickform/insomnia/` | `clickform/bruno/` |
 
 Os arquivos seguem o nome técnico da API. Na documentação do produto, ClickForm é o Módulo de Coleta de Dados (step `form`). ClickFlow Orchestrator é o Orquestrador e ClickFlow Runner é o Executor.
 
@@ -31,7 +31,7 @@ Os arquivos seguem o nome técnico da API. Na documentação do produto, ClickFo
 
 Autenticação: header `Authorization` com UUID (`{{access_token}}`), sem prefixo `Bearer`. Endpoints `/health` não exigem auth.
 
-No Postman e no Insomnia, importe o JSON do produto e o environment correspondente. No Bruno, abra a pasta `bruno/` do produto, selecione o ambiente Sandbox e preencha `access_token`.
+No Postman e no Insomnia, importe o JSON da pasta do produto e o environment correspondente. No Bruno, abra a pasta `bruno/` daquele produto, selecione o ambiente Sandbox e preencha `access_token`.
 
 ---
 
