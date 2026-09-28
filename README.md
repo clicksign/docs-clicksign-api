@@ -21,6 +21,8 @@ Collections da API `/api/v1`. Host padrão: **sandbox**.
 | ClickFlow Runner | `ClickFlow_Runner_Postman_Collection.json` + `_Environment.json` | `ClickFlow_Runner_Insomnia_Collection.json` | `bruno/ClickFlow_Runner/` |
 | ClickForm | `ClickForm_Postman_Collection.json` + `_Environment.json` | `ClickForm_Insomnia_Collection.json` | `bruno/ClickForm/` |
 
+Os arquivos seguem o nome técnico da API. Na documentação do produto, ClickForm é o Módulo de Coleta de Dados (step `form`). ClickFlow Orchestrator é o Orquestrador e ClickFlow Runner é o Executor.
+
 **Hosts sandbox (padrão):**
 
 - Orchestrator: `clickflow-sandbox.clicksign.com`
