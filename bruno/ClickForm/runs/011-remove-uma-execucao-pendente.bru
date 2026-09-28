@@ -1,0 +1,11 @@
+meta {
+  name: Remove uma execução pendente
+  type: http
+  seq: 11
+}
+
+delete {
+  url: https://{{host}}/api/v1/versions/{{version_key}}/runs/{{run_key}}
+  body: none
+  auth: inherit
+}

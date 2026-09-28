@@ -1,0 +1,29 @@
+meta {
+  name: Atualiza flow
+  type: http
+  seq: 10
+}
+
+put {
+  url: https://{{host}}/api/v1/flows/{{flow_id}}
+  body: json
+  auth: inherit
+}
+
+body:json {
+{
+  "name": "Proposta Crédito — acceptance",
+  "steps": [
+    {
+      "context": {
+        "accept_replies": [
+          "accept",
+          "aceitar"
+        ],
+        "template_key": "chave-do-template"
+      },
+      "type": "acceptance"
+    }
+  ]
+}
+}

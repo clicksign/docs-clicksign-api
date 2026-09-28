@@ -1,0 +1,11 @@
+meta {
+  name: Avança para o próximo passo
+  type: http
+  seq: 4
+}
+
+post {
+  url: https://{{host}}/api/v1/executions/{{execution_id}}/next
+  body: none
+  auth: inherit
+}

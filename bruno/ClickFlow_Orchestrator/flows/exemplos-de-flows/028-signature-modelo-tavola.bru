@@ -1,0 +1,34 @@
+meta {
+  name: Signature — modelo Tavola
+  type: http
+  seq: 28
+}
+
+post {
+  url: https://{{host}}/api/v1/flows
+  body: json
+  auth: inherit
+}
+
+body:json {
+{
+  "name": "Proposta Crédito — template",
+  "steps": [
+    {
+      "context": {
+        "documents": [
+          {
+            "filename": "contrato-proposta.docx",
+            "kind": "template",
+            "template_key": "uuid-do-modelo-tavola"
+          }
+        ],
+        "settings": {
+          "folder_key": "1fb29ab8-84c4-4856-be37-5fce0f17c11a"
+        }
+      },
+      "type": "signature"
+    }
+  ]
+}
+}

@@ -1,0 +1,32 @@
+meta {
+  name: KYC — biometric_behavior + kyc (CNPJ)
+  type: http
+  seq: 20
+}
+
+post {
+  url: https://{{host}}/api/v1/flows
+  body: json
+  auth: inherit
+}
+
+body:json {
+{
+  "name": "Proposta Crédito — verify biometric_behavior + kyc (CNPJ)",
+  "steps": [
+    {
+      "context": {
+        "authentication": "biometric_behavior",
+        "result_policy": "passthrough"
+      },
+      "type": "verify"
+    },
+    {
+      "context": {
+        "type": "business"
+      },
+      "type": "kyc"
+    }
+  ]
+}
+}

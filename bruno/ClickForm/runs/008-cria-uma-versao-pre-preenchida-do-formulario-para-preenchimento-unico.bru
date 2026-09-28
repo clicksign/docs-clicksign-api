@@ -1,0 +1,34 @@
+meta {
+  name: Cria uma versão pré-preenchida do formulário para preenchimento único
+  type: http
+  seq: 8
+}
+
+post {
+  url: https://{{host}}/api/v1/versions/{{version_key}}/runs
+  body: json
+  auth: inherit
+}
+
+body:json {
+{
+  "callback_url": "https://erp.cliente.com/callback",
+  "context": {
+    "nome-completo-59661f5fe933": {
+      "value": "John Doe",
+      "read_only": false
+    },
+    "whatsapp-f9c2322fcc74": {
+      "value": "48999999999",
+      "read_only": false
+    },
+    "email-6679641e7540": {
+      "value": "john.doe@developer.com",
+      "read_only": true
+    }
+  },
+  "notification": {
+    "whatsapp": "(11) 9 1234-5678"
+  }
+}
+}

@@ -1,0 +1,24 @@
+meta {
+  name: Inicia execução — com context
+  type: http
+  seq: 8
+}
+
+post {
+  url: https://{{host}}/api/v1/flows/{{flow_id}}/execute
+  body: json
+  auth: inherit
+}
+
+body:json {
+{
+  "contact": {
+    "person_name": "Maria da Silva",
+    "phone_number": "5511999999999"
+  },
+  "context": {
+    "cpf_conjuge": "52998224725",
+    "produto": "auto"
+  }
+}
+}

@@ -1,0 +1,40 @@
+meta {
+  name: Signature — arquivo S3 + modelo Tavola
+  type: http
+  seq: 25
+}
+
+post {
+  url: https://{{host}}/api/v1/flows
+  body: json
+  auth: inherit
+}
+
+body:json {
+{
+  "name": "Proposta Crédito — arquivo S3 + template",
+  "steps": [
+    {
+      "context": {
+        "documents": [
+          {
+            "filename": "anexo.pdf",
+            "kind": "file",
+            "s3_bucket": "meu-bucket",
+            "s3_key": "caminho/para/anexo.pdf"
+          },
+          {
+            "filename": "contrato.docx",
+            "kind": "template",
+            "template_key": "uuid-do-modelo-tavola"
+          }
+        ],
+        "settings": {
+          "folder_key": "1fb29ab8-84c4-4856-be37-5fce0f17c11a"
+        }
+      },
+      "type": "signature"
+    }
+  ]
+}
+}

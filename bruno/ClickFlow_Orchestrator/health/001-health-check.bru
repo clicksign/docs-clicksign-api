@@ -1,0 +1,15 @@
+meta {
+  name: Health check
+  type: http
+  seq: 1
+}
+
+get {
+  url: https://{{host}}/health
+  body: none
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}

@@ -1,0 +1,25 @@
+meta {
+  name: Form
+  type: http
+  seq: 16
+}
+
+post {
+  url: https://{{host}}/api/v1/flows
+  body: json
+  auth: inherit
+}
+
+body:json {
+{
+  "name": "Proposta Crédito — form",
+  "steps": [
+    {
+      "context": {
+        "version_key": "sua-form-version-key"
+      },
+      "type": "form"
+    }
+  ]
+}
+}

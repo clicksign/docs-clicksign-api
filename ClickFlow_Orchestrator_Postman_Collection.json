@@ -1,0 +1,1988 @@
+{
+	"info": {
+		"_postman_id": "05026e7b-a3a0-4a8e-a400-269c13daef81",
+		"name": "ClickFlow Orchestrator",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "key",
+				"value": "Authorization",
+				"type": "string"
+			},
+			{
+				"key": "value",
+				"value": "{{access_token}}",
+				"type": "string"
+			},
+			{
+				"key": "in",
+				"value": "header",
+				"type": "string"
+			}
+		]
+	},
+	"variable": [
+		{
+			"key": "host",
+			"value": "clickflow-sandbox.clicksign.com"
+		}
+	],
+	"item": [
+		{
+			"name": "Health",
+			"item": [
+				{
+					"name": "Health check",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{host}}/health",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"health"
+							]
+						},
+						"auth": {
+							"type": "noauth"
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Executions",
+			"item": [
+				{
+					"name": "Estado da execução",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{access_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{host}}/api/v1/executions/{{execution_id}}",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"executions",
+								"{{execution_id}}"
+							]
+						},
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{access_token}}",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cancela uma execução em andamento",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{access_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{host}}/api/v1/executions/{{execution_id}}/cancel",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"executions",
+								"{{execution_id}}",
+								"cancel"
+							]
+						},
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{access_token}}",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Avança para o próximo passo",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{access_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{host}}/api/v1/executions/{{execution_id}}/next",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"executions",
+								"{{execution_id}}",
+								"next"
+							]
+						},
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{access_token}}",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lista execuções de um flow",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{access_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{host}}/api/v1/flows/{{flow_id}}/executions",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"flows",
+								"{{flow_id}}",
+								"executions"
+							]
+						},
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{access_token}}",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Inicia execução de um flow publicado",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{access_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{host}}/api/v1/flows/{{flow_id}}/executions",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"flows",
+								"{{flow_id}}",
+								"executions"
+							]
+						},
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{access_token}}",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Flows",
+			"item": [
+				{
+					"name": "Lista flows",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{access_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{host}}/api/v1/flows",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"flows"
+							]
+						},
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{access_token}}",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cria flow",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{access_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{host}}/api/v1/flows",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"flows"
+							]
+						},
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Proposta Crédito — acceptance\",\n  \"steps\": [\n    {\n      \"context\": {\n        \"accept_replies\": [\n          \"accept\",\n          \"aceitar\"\n        ],\n        \"template_key\": \"chave-do-template\"\n      },\n      \"type\": \"acceptance\"\n    }\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{access_token}}",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtém flow por ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{access_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{host}}/api/v1/flows/{{flow_id}}",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"flows",
+								"{{flow_id}}"
+							]
+						},
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{access_token}}",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualiza flow",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{access_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{host}}/api/v1/flows/{{flow_id}}",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"flows",
+								"{{flow_id}}"
+							]
+						},
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Proposta Crédito — acceptance\",\n  \"steps\": [\n    {\n      \"context\": {\n        \"accept_replies\": [\n          \"accept\",\n          \"aceitar\"\n        ],\n        \"template_key\": \"chave-do-template\"\n      },\n      \"type\": \"acceptance\"\n    }\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{access_token}}",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove flow",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{access_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{host}}/api/v1/flows/{{flow_id}}",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"flows",
+								"{{flow_id}}"
+							]
+						},
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{access_token}}",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Publica flow (draft ou unpublished → published)",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{access_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{host}}/api/v1/flows/{{flow_id}}/publish",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"flows",
+								"{{flow_id}}",
+								"publish"
+							]
+						},
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{access_token}}",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Despublica flow (published → unpublished)",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{access_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{host}}/api/v1/flows/{{flow_id}}/unpublish",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"flows",
+								"{{flow_id}}",
+								"unpublish"
+							]
+						},
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{access_token}}",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Exemplos de Flows",
+					"item": [
+						{
+							"name": "Consent",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://{{host}}/api/v1/flows",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"flows"
+									]
+								},
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"Proposta Crédito — consent\",\n  \"steps\": [\n    {\n      \"context\": {\n        \"channel_type\": \"whatsapp\",\n        \"template_id\": \"seu-template-id\"\n      },\n      \"type\": \"consent\"\n    }\n  ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "key",
+											"value": "Authorization",
+											"type": "string"
+										},
+										{
+											"key": "value",
+											"value": "{{access_token}}",
+											"type": "string"
+										},
+										{
+											"key": "in",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Consent — variáveis por step (channel_params)",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://{{host}}/api/v1/flows",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"flows"
+									]
+								},
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"Proposta Crédito — consent com variáveis\",\n  \"steps\": [\n    {\n      \"context\": {\n        \"channel_params\": {\n          \"steps\": [\n            {\n              \"step_id\": \"apresentacao\",\n              \"variables\": {\n                \"body\": [\n                  \"{{person_name}}\",\n                  \"Carro Azul\",\n                  \"{{cpf_form_field}}\"\n                ],\n                \"header\": []\n              }\n            }\n          ]\n        },\n        \"channel_type\": \"whatsapp\",\n        \"template_id\": \"seu-template-id\"\n      },\n      \"type\": \"consent\"\n    }\n  ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "key",
+											"value": "Authorization",
+											"type": "string"
+										},
+										{
+											"key": "value",
+											"value": "{{access_token}}",
+											"type": "string"
+										},
+										{
+											"key": "in",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Form",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://{{host}}/api/v1/flows",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"flows"
+									]
+								},
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"Proposta Crédito — form\",\n  \"steps\": [\n    {\n      \"context\": {\n        \"version_key\": \"sua-form-version-key\"\n      },\n      \"type\": \"form\"\n    }\n  ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "key",
+											"value": "Authorization",
+											"type": "string"
+										},
+										{
+											"key": "value",
+											"value": "{{access_token}}",
+											"type": "string"
+										},
+										{
+											"key": "in",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Form — atualização de contato",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://{{host}}/api/v1/flows",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"flows"
+									]
+								},
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"Proposta Crédito — form com atualização de contato\",\n  \"steps\": [\n    {\n      \"context\": {\n        \"contact\": {\n          \"person_birthday\": \"person-birthday-b8f2a1c3d4e5\",\n          \"person_documentation\": \"person-documentation-d0349c5e8e90\",\n          \"person_name\": \"person-name-4e578ecaa76c\",\n          \"phone_number\": \"phone-number-3d172314e41b\"\n        },\n        \"version_key\": \"a0cfcec8-4d18-49a8-b6d1-85df293d5cb4\"\n      },\n      \"type\": \"form\"\n    }\n  ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "key",
+											"value": "Authorization",
+											"type": "string"
+										},
+										{
+											"key": "value",
+											"value": "{{access_token}}",
+											"type": "string"
+										},
+										{
+											"key": "in",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Form — Injeção de respostas de formulários anteriores",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://{{host}}/api/v1/flows",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"flows"
+									]
+								},
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"Injeção de respostas de formulários anteriores\",\n  \"steps\": [\n    {\n      \"context\": {\n        \"version_key\": \"versao-formulario-cadastro\"\n      },\n      \"type\": \"form\"\n    },\n    {\n      \"context\": {\n        \"context_map_keys\": {\n          \"campo-destino-formulario-atual\": {\n            \"read_only\": false,\n            \"value\": \"campo-origem\"\n          },\n          \"email-confirmacao\": {\n            \"read_only\": true,\n            \"value\": \"email-cadastro\"\n          },\n          \"nome-completo-confirmacao\": {\n            \"read_only\": false,\n            \"value\": \"nome-completo-cadastro\"\n          },\n          \"whatsapp-confirmacao\": {\n            \"read_only\": true,\n            \"value\": \"whatsapp-cadastro\"\n          }\n        },\n        \"version_key\": \"versao-formulario-confirmacao\"\n      },\n      \"type\": \"form\"\n    }\n  ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "key",
+											"value": "Authorization",
+											"type": "string"
+										},
+										{
+											"key": "value",
+											"value": "{{access_token}}",
+											"type": "string"
+										},
+										{
+											"key": "in",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Form — Injeção do contato no formulário",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://{{host}}/api/v1/flows",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"flows"
+									]
+								},
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"Injeção do contato no formulário\",\n  \"steps\": [\n    {\n      \"context\": {\n        \"context_map_keys\": {\n          \"cpf\": {\n            \"read_only\": true,\n            \"value\": \"{{person_documentation}}\"\n          },\n          \"data-nascimento\": {\n            \"read_only\": true,\n            \"value\": \"{{person_birthday}}\"\n          },\n          \"nome-completo\": {\n            \"read_only\": true,\n            \"value\": \"{{person_name}}\"\n          },\n          \"whatsapp\": {\n            \"read_only\": true,\n            \"value\": \"{{phone_number}}\"\n          }\n        },\n        \"version_key\": \"versao-formulario-confirmacao\"\n      },\n      \"type\": \"form\"\n    }\n  ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "key",
+											"value": "Authorization",
+											"type": "string"
+										},
+										{
+											"key": "value",
+											"value": "{{access_token}}",
+											"type": "string"
+										},
+										{
+											"key": "in",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "KYC — biometric_behavior + kyc (CNPJ)",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://{{host}}/api/v1/flows",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"flows"
+									]
+								},
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"Proposta Crédito — verify biometric_behavior + kyc (CNPJ)\",\n  \"steps\": [\n    {\n      \"context\": {\n        \"authentication\": \"biometric_behavior\",\n        \"result_policy\": \"passthrough\"\n      },\n      \"type\": \"verify\"\n    },\n    {\n      \"context\": {\n        \"type\": \"business\"\n      },\n      \"type\": \"kyc\"\n    }\n  ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "key",
+											"value": "Authorization",
+											"type": "string"
+										},
+										{
+											"key": "value",
+											"value": "{{access_token}}",
+											"type": "string"
+										},
+										{
+											"key": "in",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "KYC — form + biometric_behavior + kyc (CPF)",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://{{host}}/api/v1/flows",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"flows"
+									]
+								},
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"Proposta Crédito — form + verify biometric_behavior + kyc (CPF)\",\n  \"steps\": [\n    {\n      \"context\": {\n        \"version_key\": \"sua-form-version-key\"\n      },\n      \"type\": \"form\"\n    },\n    {\n      \"context\": {\n        \"authentication\": \"biometric_behavior\",\n        \"contact_fields_map\": {\n          \"person_documentation\": \"field-key-do-documento\",\n          \"person_name\": \"field-key-do-nome\"\n        },\n        \"result_policy\": \"passthrough\"\n      },\n      \"type\": \"verify\"\n    },\n    {\n      \"context\": {\n        \"type\": \"customer\"\n      },\n      \"type\": \"kyc\"\n    }\n  ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "key",
+											"value": "Authorization",
+											"type": "string"
+										},
+										{
+											"key": "value",
+											"value": "{{access_token}}",
+											"type": "string"
+										},
+										{
+											"key": "in",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Signature — template + configurações do envelope",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://{{host}}/api/v1/flows",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"flows"
+									]
+								},
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"Proposta Crédito — assinatura com configurações do envelope\",\n  \"steps\": [\n    {\n      \"context\": {\n        \"contact\": {\n          \"person_birthday\": \"person-birthday-b8f2a1c3d4e5\",\n          \"person_documentation\": \"person-documentation-d0349c5e8e90\",\n          \"person_name\": \"person-name-4e578ecaa76c\",\n          \"phone_number\": \"phone-number-3d172314e41b\"\n        },\n        \"version_key\": \"a0cfcec8-4d18-49a8-b6d1-85df293d5cb4\"\n      },\n      \"type\": \"form\"\n    },\n    {\n      \"context\": {\n        \"documents\": [\n          {\n            \"filename\": \"{{person_name}}_settings.docx\",\n            \"kind\": \"template\",\n            \"template_key\": \"uuid-do-modelo-tavola\"\n          }\n        ],\n        \"settings\": {\n          \"auto_close\": false,\n          \"block_after_refusal\": false,\n          \"deadline_at\": 30,\n          \"default_message\": \"Documento referente a {{data-contrato-d0349c5e8e90}}.\",\n          \"default_subject\": \"Assine seu documento, {{person_name}}\",\n          \"folder_key\": \"1fb29ab8-84c4-4856-be37-5fce0f17c11a\",\n          \"locale\": \"en-US\",\n          \"name\": \"Envelope {{person_name}} — {{data-contrato-d0349c5e8e90}}\",\n          \"remind_interval\": \"2\"\n        }\n      },\n      \"type\": \"signature\"\n    }\n  ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "key",
+											"value": "Authorization",
+											"type": "string"
+										},
+										{
+											"key": "value",
+											"value": "{{access_token}}",
+											"type": "string"
+										},
+										{
+											"key": "in",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Signature — arquivo S3",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://{{host}}/api/v1/flows",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"flows"
+									]
+								},
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"Proposta Crédito\",\n  \"steps\": [\n    {\n      \"context\": {\n        \"documents\": [\n          {\n            \"filename\": \"contrato-proposta.pdf\",\n            \"kind\": \"file\",\n            \"s3_bucket\": \"meu-bucket\",\n            \"s3_key\": \"caminho/para/contrato.pdf\"\n          }\n        ],\n        \"settings\": {\n          \"folder_key\": \"1fb29ab8-84c4-4856-be37-5fce0f17c11a\"\n        }\n      },\n      \"type\": \"signature\"\n    }\n  ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "key",
+											"value": "Authorization",
+											"type": "string"
+										},
+										{
+											"key": "value",
+											"value": "{{access_token}}",
+											"type": "string"
+										},
+										{
+											"key": "in",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Signature — filename com interpolação",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://{{host}}/api/v1/flows",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"flows"
+									]
+								},
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"Proposta Crédito — form + signature com filename\",\n  \"steps\": [\n    {\n      \"context\": {\n        \"contact\": {\n          \"person_birthday\": \"person-birthday-b8f2a1c3d4e5\",\n          \"person_documentation\": \"person-documentation-d0349c5e8e90\",\n          \"person_name\": \"person-name-4e578ecaa76c\",\n          \"phone_number\": \"phone-number-3d172314e41b\"\n        },\n        \"version_key\": \"a0cfcec8-4d18-49a8-b6d1-85df293d5cb4\"\n      },\n      \"type\": \"form\"\n    },\n    {\n      \"context\": {\n        \"documents\": [\n          {\n            \"filename\": \"doc_{{person_name}}_{{field-key-do-version}}.docx\",\n            \"kind\": \"template\",\n            \"template_key\": \"uuid-do-modelo-tavola\"\n          }\n        ],\n        \"settings\": {\n          \"folder_key\": \"1fb29ab8-84c4-4856-be37-5fce0f17c11a\",\n          \"name\": \"Envelope {{person_name}}\"\n        }\n      },\n      \"type\": \"signature\"\n    }\n  ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "key",
+											"value": "Authorization",
+											"type": "string"
+										},
+										{
+											"key": "value",
+											"value": "{{access_token}}",
+											"type": "string"
+										},
+										{
+											"key": "in",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Signature — arquivo S3 + modelo Tavola",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://{{host}}/api/v1/flows",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"flows"
+									]
+								},
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"Proposta Crédito — arquivo S3 + template\",\n  \"steps\": [\n    {\n      \"context\": {\n        \"documents\": [\n          {\n            \"filename\": \"anexo.pdf\",\n            \"kind\": \"file\",\n            \"s3_bucket\": \"meu-bucket\",\n            \"s3_key\": \"caminho/para/anexo.pdf\"\n          },\n          {\n            \"filename\": \"contrato.docx\",\n            \"kind\": \"template\",\n            \"template_key\": \"uuid-do-modelo-tavola\"\n          }\n        ],\n        \"settings\": {\n          \"folder_key\": \"1fb29ab8-84c4-4856-be37-5fce0f17c11a\"\n        }\n      },\n      \"type\": \"signature\"\n    }\n  ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "key",
+											"value": "Authorization",
+											"type": "string"
+										},
+										{
+											"key": "value",
+											"value": "{{access_token}}",
+											"type": "string"
+										},
+										{
+											"key": "in",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Signature — runner_files",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://{{host}}/api/v1/flows",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"flows"
+									]
+								},
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"Proposta Crédito — runner_files\",\n  \"steps\": [\n    {\n      \"context\": {\n        \"documents\": [\n          {\n            \"filename\": \"contrato.pdf\",\n            \"key\": \"1\",\n            \"kind\": \"runner_files\"\n          }\n        ],\n        \"settings\": {\n          \"folder_key\": \"1fb29ab8-84c4-4856-be37-5fce0f17c11a\"\n        }\n      },\n      \"type\": \"signature\"\n    }\n  ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "key",
+											"value": "Authorization",
+											"type": "string"
+										},
+										{
+											"key": "value",
+											"value": "{{access_token}}",
+											"type": "string"
+										},
+										{
+											"key": "in",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Signature — template + signatários extras",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://{{host}}/api/v1/flows",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"flows"
+									]
+								},
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"Proposta Crédito — assinatura com signatários extras\",\n  \"steps\": [\n    {\n      \"context\": {\n        \"documents\": [\n          {\n            \"filename\": \"{{person_name}}.docx\",\n            \"kind\": \"template\",\n            \"template_key\": \"uuid-do-modelo-tavola\"\n          }\n        ],\n        \"settings\": {\n          \"folder_key\": \"1fb29ab8-84c4-4856-be37-5fce0f17c11a\",\n          \"name\": \"Envelope {{person_name}}\"\n        },\n        \"signers\": [\n          {\n            \"auths\": [\n              \"handwritten\"\n            ],\n            \"birthday\": \"2021-07-15\",\n            \"communicate_events\": {\n              \"document_signed\": \"email\",\n              \"signature_reminder\": \"email\",\n              \"signature_request\": \"email\"\n            },\n            \"documentation\": \"34623794024\",\n            \"email\": \"signatario.fixo@mail.com\",\n            \"group\": 1,\n            \"has_documentation\": true,\n            \"location_required_enabled\": true,\n            \"name\": \"Signatário Fixo\",\n            \"phone_number\": \"49999999999\",\n            \"refusable\": false,\n            \"roles\": [\n              \"witness\"\n            ]\n          },\n          {\n            \"auths\": [\n              \"liveness\",\n              \"whatsapp\"\n            ],\n            \"birthday\": \"{{person_birthday}}\",\n            \"documentation\": \"{{person_documentation}}\",\n            \"group\": 2,\n            \"name\": \"{{person_name}}\",\n            \"phone_number\": \"{{phone_number}}\",\n            \"roles\": [\n              \"sign\"\n            ]\n          }\n        ]\n      },\n      \"type\": \"signature\"\n    }\n  ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "key",
+											"value": "Authorization",
+											"type": "string"
+										},
+										{
+											"key": "value",
+											"value": "{{access_token}}",
+											"type": "string"
+										},
+										{
+											"key": "in",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Signature — modelo Tavola",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://{{host}}/api/v1/flows",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"flows"
+									]
+								},
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"Proposta Crédito — template\",\n  \"steps\": [\n    {\n      \"context\": {\n        \"documents\": [\n          {\n            \"filename\": \"contrato-proposta.docx\",\n            \"kind\": \"template\",\n            \"template_key\": \"uuid-do-modelo-tavola\"\n          }\n        ],\n        \"settings\": {\n          \"folder_key\": \"1fb29ab8-84c4-4856-be37-5fce0f17c11a\"\n        }\n      },\n      \"type\": \"signature\"\n    }\n  ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "key",
+											"value": "Authorization",
+											"type": "string"
+										},
+										{
+											"key": "value",
+											"value": "{{access_token}}",
+											"type": "string"
+										},
+										{
+											"key": "in",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Verify — liveness",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://{{host}}/api/v1/flows",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"flows"
+									]
+								},
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"Proposta Crédito — verify\",\n  \"steps\": [\n    {\n      \"context\": {\n        \"authentication\": \"liveness\"\n      },\n      \"type\": \"verify\"\n    }\n  ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "key",
+											"value": "Authorization",
+											"type": "string"
+										},
+										{
+											"key": "value",
+											"value": "{{access_token}}",
+											"type": "string"
+										},
+										{
+											"key": "in",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Verify — biometric_behavior",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://{{host}}/api/v1/flows",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"flows"
+									]
+								},
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"Proposta Crédito — verify biometric_behavior\",\n  \"steps\": [\n    {\n      \"context\": {\n        \"authentication\": \"biometric_behavior\"\n      },\n      \"type\": \"verify\"\n    }\n  ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "key",
+											"value": "Authorization",
+											"type": "string"
+										},
+										{
+											"key": "value",
+											"value": "{{access_token}}",
+											"type": "string"
+										},
+										{
+											"key": "in",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Verify — biometric_behavior + form",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://{{host}}/api/v1/flows",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"flows"
+									]
+								},
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"Proposta Crédito — verify biometric_behavior + form\",\n  \"steps\": [\n    {\n      \"context\": {\n        \"version_key\": \"sua-form-version-key\"\n      },\n      \"type\": \"form\"\n    },\n    {\n      \"context\": {\n        \"authentication\": \"biometric_behavior\",\n        \"contact_fields_map\": {\n          \"person_documentation\": \"field-key-do-documento\",\n          \"person_name\": \"field-key-do-nome\"\n        }\n      },\n      \"type\": \"verify\"\n    }\n  ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "key",
+											"value": "Authorization",
+											"type": "string"
+										},
+										{
+											"key": "value",
+											"value": "{{access_token}}",
+											"type": "string"
+										},
+										{
+											"key": "in",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Verify — identity_biometrics",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://{{host}}/api/v1/flows",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"flows"
+									]
+								},
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"Proposta Crédito — verify identity_biometrics\",\n  \"steps\": [\n    {\n      \"context\": {\n        \"authentication\": \"identity_biometrics\"\n      },\n      \"type\": \"verify\"\n    }\n  ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "key",
+											"value": "Authorization",
+											"type": "string"
+										},
+										{
+											"key": "value",
+											"value": "{{access_token}}",
+											"type": "string"
+										},
+										{
+											"key": "in",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Verify — instructions",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://{{host}}/api/v1/flows",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"flows"
+									]
+								},
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"Proposta Crédito — verify instructions\",\n  \"steps\": [\n    {\n      \"context\": {\n        \"authentication\": \"liveness\",\n        \"instructions\": true\n      },\n      \"type\": \"verify\"\n    }\n  ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "key",
+											"value": "Authorization",
+											"type": "string"
+										},
+										{
+											"key": "value",
+											"value": "{{access_token}}",
+											"type": "string"
+										},
+										{
+											"key": "in",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Verify — provider_priority",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://{{host}}/api/v1/flows",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"flows"
+									]
+								},
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"Proposta Crédito — verify provider_priority\",\n  \"steps\": [\n    {\n      \"context\": {\n        \"authentication\": \"liveness\",\n        \"provider_priority\": [\n          \"caf\",\n          \"clearsale\"\n        ]\n      },\n      \"type\": \"verify\"\n    }\n  ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "key",
+											"value": "Authorization",
+											"type": "string"
+										},
+										{
+											"key": "value",
+											"value": "{{access_token}}",
+											"type": "string"
+										},
+										{
+											"key": "in",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}

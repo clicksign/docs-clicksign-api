@@ -1,0 +1,47 @@
+meta {
+  name: Signature — filename com interpolação
+  type: http
+  seq: 24
+}
+
+post {
+  url: https://{{host}}/api/v1/flows
+  body: json
+  auth: inherit
+}
+
+body:json {
+{
+  "name": "Proposta Crédito — form + signature com filename",
+  "steps": [
+    {
+      "context": {
+        "contact": {
+          "person_birthday": "person-birthday-b8f2a1c3d4e5",
+          "person_documentation": "person-documentation-d0349c5e8e90",
+          "person_name": "person-name-4e578ecaa76c",
+          "phone_number": "phone-number-3d172314e41b"
+        },
+        "version_key": "a0cfcec8-4d18-49a8-b6d1-85df293d5cb4"
+      },
+      "type": "form"
+    },
+    {
+      "context": {
+        "documents": [
+          {
+            "filename": "doc_{{person_name}}_{{field-key-do-version}}.docx",
+            "kind": "template",
+            "template_key": "uuid-do-modelo-tavola"
+          }
+        ],
+        "settings": {
+          "folder_key": "1fb29ab8-84c4-4856-be37-5fce0f17c11a",
+          "name": "Envelope {{person_name}}"
+        }
+      },
+      "type": "signature"
+    }
+  ]
+}
+}

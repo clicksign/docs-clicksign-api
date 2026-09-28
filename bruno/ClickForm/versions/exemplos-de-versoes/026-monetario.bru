@@ -1,0 +1,34 @@
+meta {
+  name: Monetário
+  type: http
+  seq: 26
+}
+
+post {
+  url: https://{{host}}/api/v1/forms/{{form_key}}/versions
+  body: json
+  auth: inherit
+}
+
+body:json {
+{
+  "settings": {
+    "title": "Atualização de contato",
+    "subtitle": "Por favor, confirme os dados de contato.",
+    "finish_title": "Atualização de dados concluída!",
+    "finish_subtitle": "Em breve nossa equipe entrará em contato.",
+    "finish_info": "Visite nosso site para mais informações."
+  },
+  "fields": [
+    {
+      "label": "Estimated amount",
+      "type": "currency",
+      "placeholder": "0,00",
+      "help_balloon": "Informe o valor monetário.",
+      "required": true,
+      "order": 1,
+      "step": 0
+    }
+  ]
+}
+}

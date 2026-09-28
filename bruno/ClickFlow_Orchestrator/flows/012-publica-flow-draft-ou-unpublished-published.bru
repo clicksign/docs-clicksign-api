@@ -1,0 +1,11 @@
+meta {
+  name: Publica flow (draft ou unpublished → published)
+  type: http
+  seq: 12
+}
+
+patch {
+  url: https://{{host}}/api/v1/flows/{{flow_id}}/publish
+  body: none
+  auth: inherit
+}

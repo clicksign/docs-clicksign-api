@@ -1,0 +1,26 @@
+meta {
+  name: Consent
+  type: http
+  seq: 14
+}
+
+post {
+  url: https://{{host}}/api/v1/flows
+  body: json
+  auth: inherit
+}
+
+body:json {
+{
+  "name": "Proposta Crédito — consent",
+  "steps": [
+    {
+      "context": {
+        "channel_type": "whatsapp",
+        "template_id": "seu-template-id"
+      },
+      "type": "consent"
+    }
+  ]
+}
+}

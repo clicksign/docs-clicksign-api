@@ -11,6 +11,26 @@ Este repositório contém collections para facilitar o teste e a integração co
 - **Insomnia Collection**: Arquivo JSON das collections que pode ser importado diretamente no Insomnia.
 - **Insomnia Expert Collection**: Arquivo JSON com collections de todas versões da API da Clicksign (Sugerido para quem precisa de recursos avançados).
 
+### ClickFlow e ClickForm
+
+Collections da API `/api/v1`. Host padrão: **sandbox**.
+
+| Produto | Postman | Insomnia | Bruno |
+|---------|---------|----------|-------|
+| ClickFlow Orchestrator | `ClickFlow_Orchestrator_Postman_Collection.json` + `_Environment.json` | `ClickFlow_Orchestrator_Insomnia_Collection.json` | `bruno/ClickFlow_Orchestrator/` |
+| ClickFlow Runner | `ClickFlow_Runner_Postman_Collection.json` + `_Environment.json` | `ClickFlow_Runner_Insomnia_Collection.json` | `bruno/ClickFlow_Runner/` |
+| ClickForm | `ClickForm_Postman_Collection.json` + `_Environment.json` | `ClickForm_Insomnia_Collection.json` | `bruno/ClickForm/` |
+
+**Hosts sandbox (padrão):**
+
+- Orchestrator: `clickflow-sandbox.clicksign.com`
+- Runner: `clickflow-runner-sandbox.clicksign.com`
+- Form: `clickform-sandbox.clicksign.com`
+
+Autenticação: header `Authorization` com UUID (`{{access_token}}`), sem prefixo `Bearer`. Endpoints `/health` não exigem auth.
+
+No Postman e no Insomnia, importe o JSON do produto e o environment correspondente. No Bruno, abra a pasta `bruno/` do produto, selecione o ambiente Sandbox e preencha `access_token`.
+
 ---
 
 ## Como Usar as Collections

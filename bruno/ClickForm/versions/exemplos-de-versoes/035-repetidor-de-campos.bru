@@ -1,0 +1,48 @@
+meta {
+  name: Repetidor de campos
+  type: http
+  seq: 35
+}
+
+post {
+  url: https://{{host}}/api/v1/forms/{{form_key}}/versions
+  body: json
+  auth: inherit
+}
+
+body:json {
+{
+  "settings": {
+    "title": "Atualização de contato",
+    "subtitle": "Por favor, confirme os dados de contato.",
+    "finish_title": "Atualização de dados concluída!",
+    "finish_subtitle": "Em breve nossa equipe entrará em contato.",
+    "finish_info": "Visite nosso site para mais informações."
+  },
+  "fields": [
+    {
+      "label": "Dependents",
+      "type": "repeater",
+      "placeholder": "Add one row per dependent",
+      "help_balloon": "Adicione um ou mais blocos de dependentes.",
+      "required": false,
+      "order": 1,
+      "step": 0,
+      "options": {
+        "button_label": "Add dependent",
+        "fields": [
+          {
+            "label": "Name",
+            "type": "text",
+            "placeholder": "Dependent full name",
+            "help_balloon": "Sub-campo text dentro do repeater.",
+            "key": "dependent_name",
+            "required": true,
+            "order": 1
+          }
+        ]
+      }
+    }
+  ]
+}
+}
