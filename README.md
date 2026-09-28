@@ -15,7 +15,7 @@ A API v3 fica na raiz. ClickFlow e ClickForm ficam em pasta própria, com `postm
 | ClickFlow Runner | `clickflow/executor/postman/` | `clickflow/executor/insomnia/` | `clickflow/executor/bruno/` |
 | ClickForm | `clickform/postman/` | `clickform/insomnia/` | `clickform/bruno/` |
 
-Na raiz também está `Clicksign_Insomnia_Expert_Collection.json`, com collections de todas as versões da API da Clicksign. Serve para quem precisa de recursos avançados.
+Na raiz também está `Clicksign_Insomnia_Expert_Collection.json`, com as APIs 1.9 e 2.0. A API v3 está em `Insomnia_Collection.json`.
 
 Os arquivos de ClickFlow e ClickForm seguem o nome técnico da API. Na documentação do produto, ClickForm é o Módulo de Coleta de Dados (step `form`). ClickFlow Orchestrator é o Orquestrador e ClickFlow Runner é o Executor.
 
