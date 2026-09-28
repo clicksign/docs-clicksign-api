@@ -1,76 +1,77 @@
 # API Collections para Testes
 
-Este repositório contém collections para facilitar o teste e a integração com a API da Clicksign. As collections estão disponíveis para as ferramentas **Postman** e **Insomnia** e foram criadas para ajudar desenvolvedores a entender e interagir com os endpoints da API de maneira prática e eficiente.
+Este repositório contém collections para testar e integrar com as APIs da Clicksign: primeiro a API v3, depois o ClickFlow e, em seguida, o Módulo de Coleta de Dados (ClickForm). As ferramentas são **Postman**, **Insomnia** e **Bruno**.
 
 ---
 
 ## Conteúdo do Repositório
 
-- **Postman Collection**: Arquivo JSON das collections que pode ser importado diretamente no Postman.
-- **Postman Environment**: Arquivo JSON das variáveis de ambiente que pode ser importado diretamente no Postman.
-- **Insomnia Collection**: Arquivo JSON das collections que pode ser importado diretamente no Insomnia.
-- **Insomnia Expert Collection**: Arquivo JSON com collections de todas versões da API da Clicksign (Sugerido para quem precisa de recursos avançados).
-
-### ClickFlow e ClickForm
-
-Collections da API `/api/v1`, uma pasta por produto. Host padrão: **sandbox**. A API v3 permanece na raiz.
+A API v3 fica na raiz. ClickFlow e ClickForm ficam em pasta própria, com `postman/`, `insomnia/` e `bruno/`. Host padrão de ClickFlow e ClickForm: **sandbox**.
 
 | Produto | Postman | Insomnia | Bruno |
 |---------|---------|----------|-------|
+| API v3 | `Clicksign_Postman_Collection.json` e `Clicksign_Postman_Environment.json` | `Insomnia_Collection.json` | — |
 | ClickFlow Orchestrator | `clickflow/orquestrador/postman/` | `clickflow/orquestrador/insomnia/` | `clickflow/orquestrador/bruno/` |
 | ClickFlow Runner | `clickflow/executor/postman/` | `clickflow/executor/insomnia/` | `clickflow/executor/bruno/` |
 | ClickForm | `clickform/postman/` | `clickform/insomnia/` | `clickform/bruno/` |
 
-Os arquivos seguem o nome técnico da API. Na documentação do produto, ClickForm é o Módulo de Coleta de Dados (step `form`). ClickFlow Orchestrator é o Orquestrador e ClickFlow Runner é o Executor.
+Na raiz também está `Clicksign_Insomnia_Expert_Collection.json`, com collections de todas as versões da API da Clicksign. Serve para quem precisa de recursos avançados.
 
-**Hosts sandbox (padrão):**
+Os arquivos de ClickFlow e ClickForm seguem o nome técnico da API. Na documentação do produto, ClickForm é o Módulo de Coleta de Dados (step `form`). ClickFlow Orchestrator é o Orquestrador e ClickFlow Runner é o Executor.
+
+**Hosts sandbox (padrão) de ClickFlow e ClickForm:**
 
 - Orchestrator: `clickflow-sandbox.clicksign.com`
 - Runner: `clickflow-runner-sandbox.clicksign.com`
 - Form: `clickform-sandbox.clicksign.com`
 
-Autenticação: header `Authorization` com UUID (`{{access_token}}`), sem prefixo `Bearer`. Endpoints `/health` não exigem auth.
-
-No Postman e no Insomnia, importe o JSON da pasta do produto e o environment correspondente. No Bruno, abra a pasta `bruno/` daquele produto, selecione o ambiente Sandbox e preencha `access_token`.
-
 ---
 
 ## Como Usar as Collections
 
+Use o arquivo do produto na tabela acima.
+
 ### **Postman**
 
-1. Faça o download do arquivo `Clicksign_Postman_Collection.json`.
+1. Baixe o JSON da collection e o environment do produto.
 2. Abra o Postman.
-3. Vá até o menu **File > Import**.
-4. Selecione o arquivo baixado e importe.
-5. Importe também as variáveis de ambiente `Clicksign_Postman_Environment.json`.
+3. Vá em **File > Import**.
+4. Importe a collection e, em seguida, o environment.
 
 ### **Insomnia**
 
-1. Faça o download do arquivo `Clicksign_Insomnia_Collection.json`.
+1. Baixe o JSON da collection do produto.
 2. Abra o Insomnia.
-3. Clique no menu de Workspaces e selecione **Import/Export > Import Data**.
-4. Escolha a opção **From File** e selecione o arquivo baixado.
+3. No menu de Workspaces, selecione **Import/Export > Import Data**.
+4. Escolha **From File** e selecione o arquivo.
+
+### **Bruno**
+
+O Bruno cobre ClickFlow e ClickForm.
+
+1. Abra o Bruno e selecione **Open Collection**.
+2. Aponte para a pasta `bruno/` do produto (`clickflow/orquestrador/bruno`, `clickflow/executor/bruno` ou `clickform/bruno`).
+3. Selecione o ambiente **Sandbox** e preencha `access_token`.
 
 ---
 
-## Configuração da API Key
+## Autenticação
 
-Ambas as collections requerem uma **API Key** válida para autenticação. Certifique-se de seguir as etapas abaixo:
+A API v3, o ClickFlow e o ClickForm usam o header `Authorization` com o UUID em `access_token`, sem prefixo `Bearer`.
 
-1. No Postman ou Insomnia, localize o ambiente configurado ou os headers de autenticação da request.
-2. Substitua `access_token` pelo seu token de autenticação.
+1. No Postman ou no Insomnia, abra o environment ou o header da request.
+2. Substitua `access_token` pelo seu token.
+
+No Bruno, o token vai no ambiente Sandbox. Endpoints `/health` de ClickFlow e ClickForm não exigem autenticação.
 
 ---
 
-## Estrutura das Requests
+## O que cada collection cobre
 
-As collections incluem exemplos de requisições para:
-
-- Criar envelopes.
-- Adicionar documentos.
-- Configurar signatários.
-- Outras operações da API.
+- **API v3:** envelopes, documentos e signatários.
+- **ClickFlow Orchestrator:** flows e execuções.
+- **ClickFlow Runner:** disparo e acompanhamento da execução.
+- **ClickForm:** formulários, versões e runs.
 
 ---
 
