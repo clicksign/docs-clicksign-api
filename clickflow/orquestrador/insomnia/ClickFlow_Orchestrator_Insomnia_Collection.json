@@ -1402,6 +1402,45 @@
       "settingEncodeUrl": true,
       "settingRebuildPath": true,
       "settingFollowRedirects": "global"
+    },
+    {
+      "_type": "request",
+      "_id": "req_embedded_signature_two_documents",
+      "parentId": "fld_3a6a06bd110a43dcb95296c0942734a6",
+      "name": "Signature (Embedded) — dois documentos",
+      "description": "",
+      "url": "https://{{host}}/api/v1/flows",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"name\": \"Signature (Embedded) - Dois documentos\",\n  \"steps\": [\n    {\n      \"type\": \"embedded_signature\",\n      \"context\": {\n        \"documents\": [\n          {\n            \"kind\": \"template\",\n            \"template_key\": \"{{template_key}}\"\n          },\n          {\n            \"kind\": \"template\",\n            \"template_key\": \"{{template_key}}\"\n          }\n        ]\n      }\n    }\n  ]\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "{{ access_token }}"
+        }
+      ],
+      "authentication": {
+        "type": "apikey",
+        "disabled": false,
+        "key": "Authorization",
+        "value": "{{ access_token }}",
+        "addTo": "header"
+      },
+      "metaSortKey": 1000000000014,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global"
     }
   ]
 }

@@ -471,6 +471,68 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Inicia execução — canal web",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{access_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{host}}/api/v1/flows/{{flow_id}}/execute",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"flows",
+								"{{flow_id}}",
+								"execute"
+							]
+						},
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"channel\": \"web\",\n  \"contact\": {\n    \"person_name\": \"Maria da Silva\"\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{access_token}}",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}

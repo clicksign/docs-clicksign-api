@@ -1979,6 +1979,66 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "Signature (Embedded) — dois documentos",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://{{host}}/api/v1/flows",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"flows"
+									]
+								},
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"Signature (Embedded) - Dois documentos\",\n  \"steps\": [\n    {\n      \"type\": \"embedded_signature\",\n      \"context\": {\n        \"documents\": [\n          {\n            \"kind\": \"template\",\n            \"template_key\": \"{{template_key}}\"\n          },\n          {\n            \"kind\": \"template\",\n            \"template_key\": \"{{template_key}}\"\n          }\n        ]\n      }\n    }\n  ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "key",
+											"value": "Authorization",
+											"type": "string"
+										},
+										{
+											"key": "value",
+											"value": "{{access_token}}",
+											"type": "string"
+										},
+										{
+											"key": "in",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				}

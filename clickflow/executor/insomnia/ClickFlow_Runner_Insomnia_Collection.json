@@ -389,6 +389,45 @@
       "settingEncodeUrl": true,
       "settingRebuildPath": true,
       "settingFollowRedirects": "global"
+    },
+    {
+      "_type": "request",
+      "_id": "req_execute_channel_web",
+      "parentId": "fld_b81e2c3806394ca9b611106a1312e4ac",
+      "name": "Inicia execução — canal web",
+      "description": "",
+      "url": "https://{{host}}/api/v1/flows/{{flow_id}}/execute",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"channel\": \"web\",\n  \"contact\": {\n    \"person_name\": \"Maria da Silva\"\n  }\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "{{ access_token }}"
+        }
+      ],
+      "authentication": {
+        "type": "apikey",
+        "disabled": false,
+        "key": "Authorization",
+        "value": "{{ access_token }}",
+        "addTo": "header"
+      },
+      "metaSortKey": 1000000000004,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global"
     }
   ]
 }
