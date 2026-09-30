@@ -1,0 +1,52 @@
+meta {
+  name: Signature — modelo com observadores
+  type: http
+  seq: 36
+}
+
+post {
+  url: https://{{host}}/api/v1/flows
+  body: json
+  auth: inherit
+}
+
+body:json {
+{
+  "name": "Proposta Crédito — assinatura com observadores",
+  "steps": [
+    {
+      "type": "signature",
+      "context": {
+        "documents": [
+          {
+            "filename": "contrato.docx",
+            "kind": "template",
+            "template_key": "uuid-do-modelo-api-v3"
+          }
+        ],
+        "settings": {
+          "folder_key": "{{folder_key}}"
+        },
+        "signature_watchers": [
+          {
+            "email": "observador.geral@exemplo.com",
+            "kind": "all_steps",
+            "attach_documents_enabled": true,
+            "communicate_events": {
+              "signature_watcher_document_sent": "email",
+              "signature_watcher_document_signed": "email",
+              "signature_watcher_document_deadline": "email",
+              "signature_watcher_document_canceled": "email",
+              "signature_watcher_envelope_closed": "email"
+            }
+          },
+          {
+            "email": "observador.final@exemplo.com",
+            "kind": "on_finished"
+          }
+        ]
+      }
+    }
+  ]
+}
+}

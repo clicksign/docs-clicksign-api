@@ -1441,6 +1441,45 @@
       "settingEncodeUrl": true,
       "settingRebuildPath": true,
       "settingFollowRedirects": "global"
+    },
+    {
+      "_type": "request",
+      "_id": "req_signature_watchers",
+      "parentId": "fld_3a6a06bd110a43dcb95296c0942734a6",
+      "name": "Signature — modelo com observadores",
+      "description": "",
+      "url": "https://{{host}}/api/v1/flows",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"name\": \"Proposta Crédito — assinatura com observadores\",\n  \"steps\": [\n    {\n      \"type\": \"signature\",\n      \"context\": {\n        \"documents\": [\n          {\n            \"filename\": \"contrato.docx\",\n            \"kind\": \"template\",\n            \"template_key\": \"uuid-do-modelo-api-v3\"\n          }\n        ],\n        \"settings\": {\n          \"folder_key\": \"{{folder_key}}\"\n        },\n        \"signature_watchers\": [\n          {\n            \"email\": \"observador.geral@exemplo.com\",\n            \"kind\": \"all_steps\",\n            \"attach_documents_enabled\": true,\n            \"communicate_events\": {\n              \"signature_watcher_document_sent\": \"email\",\n              \"signature_watcher_document_signed\": \"email\",\n              \"signature_watcher_document_deadline\": \"email\",\n              \"signature_watcher_document_canceled\": \"email\",\n              \"signature_watcher_envelope_closed\": \"email\"\n            }\n          },\n          {\n            \"email\": \"observador.final@exemplo.com\",\n            \"kind\": \"on_finished\"\n          }\n        ]\n      }\n    }\n  ]\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "{{ access_token }}"
+        }
+      ],
+      "authentication": {
+        "type": "apikey",
+        "disabled": false,
+        "key": "Authorization",
+        "value": "{{ access_token }}",
+        "addTo": "header"
+      },
+      "metaSortKey": 1000000000015,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global"
     }
   ]
 }
