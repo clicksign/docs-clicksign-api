@@ -467,6 +467,45 @@
       "settingEncodeUrl": true,
       "settingRebuildPath": true,
       "settingFollowRedirects": "global"
+    },
+    {
+      "_type": "request",
+      "_id": "req_execute_callback_url",
+      "parentId": "fld_b81e2c3806394ca9b611106a1312e4ac",
+      "name": "Inicia execução — com webhook",
+      "description": "callback_url é opcional. Sem o campo, nenhum evento é enviado. Eventos: execution.started, step.started, step.finished, execution.finished. Cada um sai uma vez. Falha de entrega não interrompe a execução. O corpo traz event_id, event, occurred_at e execution, no mesmo formato do GET da execução. A URL precisa ser https absoluta, com host e sem usuário ou senha. URL inválida responde 400 e não cria a execução.",
+      "url": "https://{{host}}/api/v1/flows/{{flow_id}}/execute",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"channel\": \"whatsapp\",\n  \"contact\": {\n    \"person_name\": \"Maria da Silva\",\n    \"phone_number\": \"5511999999999\"\n  },\n  \"callback_url\": \"https://api.cliente.com/webhooks/clickflow\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "{{ access_token }}"
+        }
+      ],
+      "authentication": {
+        "type": "apikey",
+        "disabled": false,
+        "key": "Authorization",
+        "value": "{{ access_token }}",
+        "addTo": "header"
+      },
+      "metaSortKey": 1000000000008,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global"
     }
   ]
 }

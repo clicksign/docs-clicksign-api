@@ -823,7 +823,7 @@
       "_id": "req_46ffe53d5429418483de41a50d008062",
       "parentId": "fld_3a6a06bd110a43dcb95296c0942734a6",
       "name": "KYC — biometric_behavior + kyc (CNPJ)",
-      "description": "",
+      "description": "result_policy passthrough: a reprovação conclui a etapa de verify e a execução segue para o KYC. O veredito não é aplicado. Falha operacional do provedor ainda encerra a execução.",
       "url": "https://{{host}}/api/v1/flows",
       "method": "POST",
       "body": {
@@ -862,7 +862,7 @@
       "_id": "req_8e461d417fe04a9e94ee15b4652ba62d",
       "parentId": "fld_3a6a06bd110a43dcb95296c0942734a6",
       "name": "KYC — form + biometric_behavior + kyc (CPF)",
-      "description": "",
+      "description": "result_policy passthrough: a reprovação conclui a etapa de verify e a execução segue para o KYC. O veredito não é aplicado. Falha operacional do provedor ainda encerra a execução.",
       "url": "https://{{host}}/api/v1/flows",
       "method": "POST",
       "body": {

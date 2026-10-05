@@ -595,6 +595,69 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Inicia execução — com webhook",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{access_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{host}}/api/v1/flows/{{flow_id}}/execute",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"flows",
+								"{{flow_id}}",
+								"execute"
+							]
+						},
+						"description": "callback_url é opcional. Sem o campo, nenhum evento é enviado. Eventos: execution.started, step.started, step.finished, execution.finished. Cada um sai uma vez. Falha de entrega não interrompe a execução. O corpo traz event_id, event, occurred_at e execution, no mesmo formato do GET da execução. A URL precisa ser https absoluta, com host e sem usuário ou senha. URL inválida responde 400 e não cria a execução.",
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"channel\": \"whatsapp\",\n  \"contact\": {\n    \"person_name\": \"Maria da Silva\",\n    \"phone_number\": \"5511999999999\"\n  },\n  \"callback_url\": \"https://api.cliente.com/webhooks/clickflow\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{access_token}}",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}

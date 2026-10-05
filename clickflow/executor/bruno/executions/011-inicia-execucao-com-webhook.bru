@@ -1,0 +1,31 @@
+meta {
+  name: Inicia execução — com webhook
+  type: http
+  seq: 11
+}
+
+post {
+  url: https://{{host}}/api/v1/flows/{{flow_id}}/execute
+  body: json
+  auth: inherit
+}
+
+body:json {
+{
+  "channel": "whatsapp",
+  "contact": {
+    "person_name": "Maria da Silva",
+    "phone_number": "5511999999999"
+  },
+  "callback_url": "https://api.cliente.com/webhooks/clickflow"
+}
+}
+
+docs {
+  callback_url é opcional. Sem o campo, nenhum evento é enviado.
+  Eventos: execution.started, step.started, step.finished, execution.finished.
+  Cada um sai uma vez. Falha de entrega não interrompe a execução.
+  O corpo traz event_id, event, occurred_at e execution, no mesmo formato do GET da execução.
+  A URL precisa ser https absoluta, com host e sem usuário ou senha.
+  URL inválida responde 400 e não cria a execução.
+}

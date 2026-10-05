@@ -1083,6 +1083,7 @@
 						{
 							"name": "KYC — biometric_behavior + kyc (CNPJ)",
 							"request": {
+								"description": "result_policy passthrough: a reprovação conclui a etapa de verify e a execução segue para o KYC. O veredito não é aplicado. Falha operacional do provedor ainda encerra a execução.",
 								"method": "POST",
 								"header": [
 									{
@@ -1143,6 +1144,7 @@
 						{
 							"name": "KYC — form + biometric_behavior + kyc (CPF)",
 							"request": {
+								"description": "result_policy passthrough: a reprovação conclui a etapa de verify e a execução segue para o KYC. O veredito não é aplicado. Falha operacional do provedor ainda encerra a execução.",
 								"method": "POST",
 								"header": [
 									{
