@@ -1,0 +1,20 @@
+meta {
+  name: Lista aceites
+  type: http
+  seq: 5
+}
+
+get {
+  url: http://{{host}}/api/v1/reports?limit=50
+  body: none
+  auth: none
+}
+
+params:query {
+  limit: 50
+}
+
+headers {
+  X-API-Key: {{api_key}}
+  X-API-Secret: {{api_secret}}
+}

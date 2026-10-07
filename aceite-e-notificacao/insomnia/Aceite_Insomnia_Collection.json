@@ -1,0 +1,308 @@
+{
+  "_type": "export",
+  "__export_format": 4,
+  "__export_date": "2026-09-22T00:00:00.000Z",
+  "__export_source": "manual (local-only, adaptado do padrão docs-clicksign-api)",
+  "resources": [
+    {
+      "_type": "workspace",
+      "_id": "wrk_accept0000000000000000000",
+      "name": "Módulos de Aceite e de Notificação",
+      "description": "Collection dos Módulos de Aceite e de Notificação. No ClickFlow, o step é consent.",
+      "scope": "collection"
+    },
+    {
+      "_type": "environment",
+      "_id": "env_accept_base00000000000000",
+      "parentId": "wrk_accept0000000000000000000",
+      "name": "Base Environment",
+      "data": {},
+      "dataPropertyOrder": null,
+      "color": null,
+      "isPrivate": false,
+      "metaSortKey": 1000000000000
+    },
+    {
+      "_type": "environment",
+      "_id": "env_accept_sandbox000000000000",
+      "parentId": "env_accept_base00000000000000",
+      "name": "Sandbox",
+      "data": {
+        "host": "app-acceptance-sandbox.clicksign.com",
+        "api_key": "",
+        "api_secret": "",
+        "template_id": "",
+        "acceptance_id": ""
+      },
+      "dataPropertyOrder": {
+        "&": [
+          "host",
+          "api_key",
+          "api_secret",
+          "template_id",
+          "acceptance_id"
+        ]
+      },
+      "color": "#7d69cb",
+      "isPrivate": false,
+      "metaSortKey": 1000000001000
+    },
+    {
+      "_type": "environment",
+      "_id": "env_accept_producao000000000000",
+      "parentId": "env_accept_base00000000000000",
+      "name": "Produção",
+      "data": {
+        "host": "app-acceptance.clicksign.com",
+        "api_key": "",
+        "api_secret": "",
+        "template_id": "",
+        "acceptance_id": ""
+      },
+      "dataPropertyOrder": {
+        "&": [
+          "host",
+          "api_key",
+          "api_secret",
+          "template_id",
+          "acceptance_id"
+        ]
+      },
+      "color": "#d9534f",
+      "isPrivate": false,
+      "metaSortKey": 1000000002000
+    },
+    {
+      "_type": "request_group",
+      "_id": "fld_accept_health0000000000000",
+      "parentId": "wrk_accept0000000000000000000",
+      "name": "Health",
+      "description": "",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": 1000000000000
+    },
+    {
+      "_type": "request",
+      "_id": "req_accept_health_00100000000",
+      "parentId": "fld_accept_health0000000000000",
+      "name": "Verifica disponibilidade do serviço",
+      "description": "",
+      "url": "http://{{ _.host }}/health",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": 1000000000000,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global"
+    },
+    {
+      "_type": "request_group",
+      "_id": "fld_accept_acceptances00000000",
+      "parentId": "wrk_accept0000000000000000000",
+      "name": "Acceptances",
+      "description": "",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": 1000000000001
+    },
+    {
+      "_type": "request",
+      "_id": "req_accept_criar_00100000000",
+      "parentId": "fld_accept_acceptances00000000",
+      "name": "Cria um aceite",
+      "description": "",
+      "url": "http://{{ _.host }}/api/v1/acceptances",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"execution_id\": \"exec-abc-123\",\n  \"channel_type\": \"whatsapp\",\n  \"destination\": \"+5511999990000\",\n  \"template_id\": \"{{ _.template_id }}\",\n  \"channel_params\": {\n    \"steps\": [\n      {\n        \"step_id\": \"decisao\",\n        \"sequence\": 1,\n        \"type\": \"template\",\n        \"content\": {\n          \"template\": {\n            \"variables\": { \"body\": [\"João Silva\", \"CTR-2024-001\"] }\n          }\n        }\n      }\n    ]\n  },\n  \"webhook_url\": \"https://meu-sistema.com/callbacks/acceptance\",\n  \"expiration_time\": 86400\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "X-API-Key",
+          "value": "{{ _.api_key }}"
+        },
+        {
+          "name": "X-API-Secret",
+          "value": "{{ _.api_secret }}"
+        },
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": 1000000000000,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global"
+    },
+    {
+      "_type": "request",
+      "_id": "req_accept_status_00100000000",
+      "parentId": "fld_accept_acceptances00000000",
+      "name": "Recebe evento de status (simulação)",
+      "description": "",
+      "url": "http://{{ _.host }}/api/v1/acceptances/{{ _.acceptance_id }}/status",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"status\": \"SENT\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "X-API-Key",
+          "value": "{{ _.api_key }}"
+        },
+        {
+          "name": "X-API-Secret",
+          "value": "{{ _.api_secret }}"
+        },
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": 1000000000001,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global"
+    },
+    {
+      "_type": "request",
+      "_id": "req_accept_step_00100000000",
+      "parentId": "fld_accept_acceptances00000000",
+      "name": "Recebe interação de botão (simulação)",
+      "description": "",
+      "url": "http://{{ _.host }}/api/v1/acceptances/{{ _.acceptance_id }}/step",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"step_id\": \"decisao\",\n  \"button_text\": \"Aceitar\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "X-API-Key",
+          "value": "{{ _.api_key }}"
+        },
+        {
+          "name": "X-API-Secret",
+          "value": "{{ _.api_secret }}"
+        },
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": 1000000000002,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global"
+    },
+    {
+      "_type": "request_group",
+      "_id": "fld_accept_reports00000000000",
+      "parentId": "wrk_accept0000000000000000000",
+      "name": "Reports",
+      "description": "",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": 1000000000002
+    },
+    {
+      "_type": "request",
+      "_id": "req_accept_listar_00100000000",
+      "parentId": "fld_accept_reports00000000000",
+      "name": "Lista aceites",
+      "description": "",
+      "url": "http://{{ _.host }}/api/v1/reports",
+      "method": "GET",
+      "body": {},
+      "parameters": [
+        {
+          "name": "limit",
+          "value": "50"
+        }
+      ],
+      "headers": [
+        {
+          "name": "X-API-Key",
+          "value": "{{ _.api_key }}"
+        },
+        {
+          "name": "X-API-Secret",
+          "value": "{{ _.api_secret }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": 1000000000000,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global"
+    },
+    {
+      "_type": "request",
+      "_id": "req_accept_detalhes_00100000000",
+      "parentId": "fld_accept_reports00000000000",
+      "name": "Detalhes de um aceite",
+      "description": "",
+      "url": "http://{{ _.host }}/api/v1/reports/{{ _.acceptance_id }}",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "X-API-Key",
+          "value": "{{ _.api_key }}"
+        },
+        {
+          "name": "X-API-Secret",
+          "value": "{{ _.api_secret }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": 1000000000001,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global"
+    }
+  ]
+}

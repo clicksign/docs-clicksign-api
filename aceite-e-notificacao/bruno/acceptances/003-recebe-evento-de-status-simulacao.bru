@@ -1,0 +1,23 @@
+meta {
+  name: Recebe evento de status (simulação)
+  type: http
+  seq: 3
+}
+
+post {
+  url: http://{{host}}/api/v1/acceptances/{{acceptance_id}}/status
+  body: json
+  auth: none
+}
+
+headers {
+  X-API-Key: {{api_key}}
+  X-API-Secret: {{api_secret}}
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "status": "SENT"
+  }
+}

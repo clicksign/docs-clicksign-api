@@ -1,0 +1,267 @@
+{
+	"info": {
+		"_postman_id": "b3f2a6a0-6e4a-4b0a-9a2e-1a2c4c5b6a11",
+		"name": "Módulos de Aceite e de Notificação",
+		"description": "Collection dos Módulos de Aceite e de Notificação. No ClickFlow, o step é consent.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"auth": {
+		"type": "noauth"
+	},
+	"variable": [
+		{
+			"key": "host",
+			"value": "app-acceptance-sandbox.clicksign.com"
+		}
+	],
+	"item": [
+		{
+			"name": "Health",
+			"item": [
+				{
+					"name": "Verifica disponibilidade do serviço",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://{{host}}/health",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"health"
+							]
+						},
+						"auth": {
+							"type": "noauth"
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Acceptances",
+			"item": [
+				{
+					"name": "Cria um aceite",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-API-Key",
+								"value": "{{api_key}}",
+								"type": "text"
+							},
+							{
+								"key": "X-API-Secret",
+								"value": "{{api_secret}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"execution_id\": \"exec-abc-123\",\n  \"channel_type\": \"whatsapp\",\n  \"destination\": \"+5511999990000\",\n  \"template_id\": \"{{template_id}}\",\n  \"channel_params\": {\n    \"steps\": [\n      {\n        \"step_id\": \"decisao\",\n        \"sequence\": 1,\n        \"type\": \"template\",\n        \"content\": {\n          \"template\": {\n            \"variables\": { \"body\": [\"João Silva\", \"CTR-2024-001\"] }\n          }\n        }\n      }\n    ]\n  },\n  \"metadata\": {\n    \"organization\": \"Acme Ltda\"\n  },\n  \"webhook_url\": \"https://meu-sistema.com/callbacks/acceptance\",\n  \"expiration_time\": 86400\n}"
+						},
+						"url": {
+							"raw": "http://{{host}}/api/v1/acceptances",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"acceptances"
+							]
+						}
+					},
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (pm.response.code === 201) {",
+									"    const body = pm.response.json();",
+									"    pm.collectionVariables.set('acceptance_id', body.acceptance_id);",
+									"}"
+								]
+							}
+						}
+					],
+					"response": []
+				},
+				{
+					"name": "Recebe evento de status (simulação)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-API-Key",
+								"value": "{{api_key}}",
+								"type": "text"
+							},
+							{
+								"key": "X-API-Secret",
+								"value": "{{api_secret}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"status\": \"SENT\"\n}"
+						},
+						"url": {
+							"raw": "http://{{host}}/api/v1/acceptances/{{acceptance_id}}/status",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"acceptances",
+								"{{acceptance_id}}",
+								"status"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Recebe interação de botão (simulação)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-API-Key",
+								"value": "{{api_key}}",
+								"type": "text"
+							},
+							{
+								"key": "X-API-Secret",
+								"value": "{{api_secret}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"step_id\": \"decisao\",\n  \"button_text\": \"Aceitar\"\n}"
+						},
+						"url": {
+							"raw": "http://{{host}}/api/v1/acceptances/{{acceptance_id}}/step",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"acceptances",
+								"{{acceptance_id}}",
+								"step"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Reports",
+			"item": [
+				{
+					"name": "Lista aceites",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-API-Key",
+								"value": "{{api_key}}",
+								"type": "text"
+							},
+							{
+								"key": "X-API-Secret",
+								"value": "{{api_secret}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://{{host}}/api/v1/reports?limit=50",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"reports"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "50"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Detalhes de um aceite",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-API-Key",
+								"value": "{{api_key}}",
+								"type": "text"
+							},
+							{
+								"key": "X-API-Secret",
+								"value": "{{api_secret}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://{{host}}/api/v1/reports/{{acceptance_id}}",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"reports",
+								"{{acceptance_id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

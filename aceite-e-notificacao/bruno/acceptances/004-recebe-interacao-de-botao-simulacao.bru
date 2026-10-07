@@ -1,0 +1,24 @@
+meta {
+  name: Recebe interação de botão (simulação)
+  type: http
+  seq: 4
+}
+
+post {
+  url: http://{{host}}/api/v1/acceptances/{{acceptance_id}}/step
+  body: json
+  auth: none
+}
+
+headers {
+  X-API-Key: {{api_key}}
+  X-API-Secret: {{api_secret}}
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "step_id": "decisao",
+    "button_text": "Aceitar"
+  }
+}

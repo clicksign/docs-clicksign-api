@@ -1,0 +1,16 @@
+meta {
+  name: Detalhes de um aceite
+  type: http
+  seq: 6
+}
+
+get {
+  url: http://{{host}}/api/v1/reports/{{acceptance_id}}
+  body: none
+  auth: none
+}
+
+headers {
+  X-API-Key: {{api_key}}
+  X-API-Secret: {{api_secret}}
+}

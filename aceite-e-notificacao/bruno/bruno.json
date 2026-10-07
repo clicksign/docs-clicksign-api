@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "Módulos de Aceite e de Notificação",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

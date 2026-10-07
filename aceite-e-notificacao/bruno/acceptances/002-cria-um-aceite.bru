@@ -1,0 +1,48 @@
+meta {
+  name: Cria um aceite
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://{{host}}/api/v1/acceptances
+  body: json
+  auth: none
+}
+
+headers {
+  X-API-Key: {{api_key}}
+  X-API-Secret: {{api_secret}}
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "execution_id": "exec-abc-123",
+    "channel_type": "whatsapp",
+    "destination": "+5511999990000",
+    "template_id": "{{template_id}}",
+    "channel_params": {
+      "steps": [
+        {
+          "step_id": "decisao",
+          "sequence": 1,
+          "type": "template",
+          "content": {
+            "template": {
+              "variables": { "body": ["João Silva", "CTR-2024-001"] }
+            }
+          }
+        }
+      ]
+    },
+    "webhook_url": "https://meu-sistema.com/callbacks/acceptance",
+    "expiration_time": 86400
+  }
+}
+
+script:post-response {
+  if (res.status === 201) {
+    bru.setVar("acceptance_id", res.body.acceptance_id);
+  }
+}
