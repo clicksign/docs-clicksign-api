@@ -1,0 +1,49 @@
+meta {
+  name: Chaves externas no webhook
+  type: http
+  seq: 37
+}
+
+post {
+  url: https://{{host}}/api/v1/forms/{{form_key}}/versions
+  body: json
+  auth: inherit
+}
+
+body:json {
+{
+  "settings": {
+    "title": "Cadastro de cliente",
+    "subtitle": "Preencha os dados abaixo.",
+    "finish_title": "Cadastro recebido",
+    "finish_subtitle": "Obrigado pelo envio."
+  },
+  "fields": [
+    {
+      "label": "Nome completo",
+      "type": "text",
+      "required": true,
+      "step": 0,
+      "order": 1,
+      "placeholder": "Nome completo do cliente",
+      "external_key": "customer_full_name"
+    },
+    {
+      "label": "Email",
+      "type": "email",
+      "required": true,
+      "step": 0,
+      "order": 2,
+      "placeholder": "nome@empresa.com",
+      "external_key": "customer_email"
+    },
+    {
+      "label": "Whatsapp",
+      "type": "phone_number",
+      "required": true,
+      "step": 1,
+      "order": 3
+    }
+  ]
+}
+}
