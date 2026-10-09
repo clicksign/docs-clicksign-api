@@ -79,6 +79,12 @@ No Bruno, o token vai no ambiente Sandbox. Endpoints `/health` de ClickFlow e Cl
 
 ---
 
+## Demo de retry
+
+A pasta `demo-retry/` é uma simulação local de retry, backoff exponencial e jitter. Não é a API da Clicksign. O zip para baixar é `demo-retry/demo-retry.zip`. O passo a passo está em [Integração resiliente](https://developers.clicksign.com/docs/integracao-resiliente).
+
+---
+
 ## Atualizações e Contribuições
 
 Se houver atualizações ou melhorias nas collections, elas serão refletidas neste repositório.  

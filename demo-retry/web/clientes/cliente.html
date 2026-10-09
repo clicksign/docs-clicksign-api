@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cliente</title>
+  <link rel="stylesheet" href="/estilo.css">
+  <link rel="stylesheet" href="cliente.css">
+</head>
+<body>
+  <header>
+    <strong id="titulo">Cliente</strong>
+    <span id="estrategia"></span>
+    <button id="ver-codigo" title="Ver o código desta estratégia">&lt;/&gt;</button>
+  </header>
+
+  <section id="agora">
+    <div id="situacao">Aguardando o primeiro pedido…</div>
+    <div class="barra"><div id="progresso"></div></div>
+  </section>
+
+  <section id="numeros">
+    <div><span id="taxa">–</span><small>pedidos atendidos</small></div>
+    <div><span id="placar">0 ✓ · 0 ✗</span><small>pedidos</small></div>
+    <div><span id="ligacoes">0</span><small id="por-pedido">ligações ao servidor</small></div>
+  </section>
+
+  <ol id="historico"></ol>
+
+  <footer>
+    <span class="ficha sucesso">200</span> atendido
+    <span class="ficha limite">429</span> limite
+    <span class="ficha timeout">⏱</span> timeout
+    <span class="espera-legenda">· 1000 ms</span> espera
+  </footer>
+
+  <dialog id="codigo">
+    <form method="dialog"><button>fechar</button></form>
+    <pre><code id="fonte"></code></pre>
+  </dialog>
+
+  <script type="module" src="tela.js"></script>
+</body>
+</html>

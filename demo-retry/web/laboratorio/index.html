@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Laboratório de Retry</title>
+  <link rel="stylesheet" href="/estilo.css">
+  <link rel="stylesheet" href="laboratorio.css">
+</head>
+<body>
+  <nav>
+    <strong>Laboratório</strong>
+    <button data-receita="semRetry">1 · Sem retry</button>
+    <button data-receita="retry">2 · Retry</button>
+    <button data-receita="backoff">3 · Backoff exponencial</button>
+    <button data-receita="jitter">4 · Backoff + jitter</button>
+    <span class="espaco"></span>
+    <button id="pausar">⏸ Pausar</button>
+    <button id="zerar">↺ Zerar números</button>
+    <a href="/mosaico.html">Mosaico</a>
+  </nav>
+
+  <main>
+    <aside id="ajustes">
+      <fieldset>
+        <legend>Cenário</legend>
+        <label>Clientes <output data-para="clientes"></output>
+          <input type="range" id="clientes" min="1" max="10" step="1" value="10">
+        </label>
+        <label>Pedido a cada <output data-para="intervalo" data-unidade=" s"></output>
+          <input type="range" id="intervalo" min="2" max="15" step="1" value="10">
+        </label>
+        <label>Timeout <output data-para="timeout" data-unidade=" ms"></output>
+          <input type="range" id="timeout" min="500" max="5000" step="100" value="2000">
+        </label>
+      </fieldset>
+
+      <fieldset>
+        <legend>Retry</legend>
+        <label>Máximo de tentativas <output data-para="tentativas"></output>
+          <input type="range" id="tentativas" min="1" max="12" step="1" value="10">
+        </label>
+        <label>Espera inicial <output data-para="esperaInicial" data-unidade=" ms"></output>
+          <input type="range" id="esperaInicial" min="0" max="2000" step="50" value="1000">
+        </label>
+      </fieldset>
+
+      <fieldset>
+        <legend><label class="caixa"><input type="checkbox" id="exponencial" checked> Backoff exponencial</label></legend>
+        <label>Multiplicador <output data-para="multiplicador" data-unidade="×"></output>
+          <input type="range" id="multiplicador" min="1.5" max="3" step="0.5" value="2">
+        </label>
+        <label>Espera máxima <output data-para="esperaMaxima" data-unidade=" ms"></output>
+          <input type="range" id="esperaMaxima" min="500" max="10000" step="250" value="4000">
+        </label>
+      </fieldset>
+
+      <fieldset>
+        <legend><label class="caixa"><input type="checkbox" id="jitter" checked> Jitter</label></legend>
+        <p class="dica">Sorteia uma fração da espera, para cada cliente ligar num momento diferente.</p>
+        <div class="faixa">
+          <label>Mínimo <span><input type="number" id="jitterMinimo" min="0" max="100" step="5" value="50"> %</span></label>
+          <label>Máximo <span><input type="number" id="jitterMaximo" min="0" max="200" step="5" value="150"> %</span></label>
+        </div>
+      </fieldset>
+    </aside>
+
+    <section id="palco">
+      <div id="indicadores">
+        <div><span id="taxaSucesso">–</span><small>pedidos atendidos</small></div>
+        <div><span id="taxaFalha">–</span><small>pedidos que falharam</small></div>
+        <div><span id="porPedido">–</span><small>ligações por pedido</small></div>
+        <div><span id="tempoMedio">–</span><small>tempo médio até ser atendido</small></div>
+        <p>últimos 2 min</p>
+      </div>
+
+      <div class="cartao" id="cartao-raias">
+        <h2>Cada cliente, nos últimos 20 segundos</h2>
+        <canvas id="raias"></canvas>
+        <div class="legenda">
+          <span><i class="sucesso"></i>200 atendida</span>
+          <span><i class="limite"></i>429 recusada</span>
+          <span><i class="timeout"></i>timeout</span>
+          <span><i class="andamento"></i>ligando</span>
+          <span><i class="linha"></i>esperando para tentar de novo</span>
+          <span><i class="instavel"></i>servidor instável</span>
+        </div>
+      </div>
+
+      <div id="graficos">
+        <div class="cartao">
+          <h2>Pedidos por rodada</h2>
+          <div id="rodadas" class="grafico"></div>
+          <div class="legenda">
+            <span><i class="sucesso"></i>atendidos</span>
+            <span><i class="timeout"></i>falharam</span>
+          </div>
+        </div>
+        <div class="cartao">
+          <h2>Quanto cada cliente espera antes de ligar de novo</h2>
+          <canvas id="plano"></canvas>
+          <div class="legenda">
+            <span><i class="faixa-plano"></i>faixa possível</span>
+            <span><i class="ponto"></i>esperas sorteadas nos últimos 10 s</span>
+          </div>
+        </div>
+        <div class="cartao servidor">
+          <iframe id="painel" title="Painel do servidor"></iframe>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="dica-flutuante" hidden></div>
+
+  <script type="module" src="laboratorio.js"></script>
+</body>
+</html>

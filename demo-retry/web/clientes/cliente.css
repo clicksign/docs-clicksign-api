@@ -1,0 +1,172 @@
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  padding: 10px 12px;
+  gap: 8px;
+  overflow: hidden;
+  background: var(--superficie);
+  font-size: 14px;
+}
+
+header {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+header strong {
+  font-size: 16px;
+}
+
+#estrategia {
+  flex: 1;
+  color: var(--texto-suave);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#ver-codigo {
+  border: 1px solid var(--borda);
+  background: var(--fundo);
+  color: var(--texto-suave);
+  border-radius: 6px;
+  padding: 2px 8px;
+  cursor: pointer;
+  font: inherit;
+  font-size: 12px;
+}
+
+#agora {
+  background: var(--fundo);
+  border-radius: 8px;
+  padding: 8px 10px;
+}
+
+#situacao {
+  font-size: clamp(14px, 3.8vw, 18px);
+  font-weight: 600;
+  min-height: 1.4em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#situacao.sucesso { color: var(--sucesso); }
+#situacao.falha { color: var(--timeout); }
+
+.barra {
+  height: 6px;
+  margin-top: 6px;
+  border-radius: 3px;
+  background: var(--borda);
+  overflow: hidden;
+}
+
+#progresso {
+  height: 100%;
+  width: 0;
+  background: var(--destaque);
+}
+
+#progresso.espera { background: var(--espera); }
+
+#numeros {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+#numeros div {
+  display: flex;
+  flex-direction: column;
+}
+
+#numeros span {
+  font-size: clamp(15px, 4.2vw, 20px);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+#numeros small {
+  color: var(--texto-suave);
+  font-size: 12px;
+}
+
+#historico {
+  flex: 1;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+#historico li {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+}
+
+#historico .numero,
+#historico .final {
+  flex-shrink: 0;
+}
+
+#historico .numero {
+  width: 3.2em;
+  color: var(--texto-apagado);
+  font-size: 12px;
+}
+
+#historico .final {
+  width: 1.4em;
+  font-weight: 700;
+}
+
+#historico .final.sucesso { color: var(--sucesso); }
+#historico .final.falha { color: var(--timeout); }
+
+.espera,
+.espera-legenda {
+  color: var(--texto-apagado);
+  font-size: 11px;
+}
+
+footer {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-wrap: wrap;
+  color: var(--texto-suave);
+  font-size: 11px;
+}
+
+footer .ficha {
+  margin-left: 6px;
+}
+
+dialog {
+  width: 92vw;
+  max-height: 92vh;
+  border: 1px solid var(--borda);
+  border-radius: 10px;
+  background: var(--superficie);
+  color: var(--texto);
+  padding: 12px 16px;
+}
+
+dialog form {
+  text-align: right;
+}
+
+dialog pre {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+  overflow: auto;
+}

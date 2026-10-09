@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Demo de Retry</title>
+  <link rel="stylesheet" href="/estilo.css">
+  <style>
+    main { max-width: 880px; margin: 0 auto; padding: 40px 16px; }
+    h1 { margin: 0 0 6px; font-size: 30px; }
+    p { color: var(--texto-suave); line-height: 1.5; }
+    .cartoes { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; margin: 24px 0; }
+    .cartoes a {
+      display: block;
+      padding: 16px;
+      border: 1px solid var(--borda);
+      border-radius: 10px;
+      background: var(--superficie);
+      color: var(--texto);
+      text-decoration: none;
+    }
+    .cartoes a:hover { border-color: var(--destaque); }
+    .cartoes strong { display: block; font-size: 17px; margin-bottom: 6px; }
+    .cartoes span { color: var(--texto-suave); font-size: 14px; line-height: 1.45; }
+    ol { padding-left: 20px; line-height: 1.7; }
+    table { border-collapse: collapse; margin-top: 8px; }
+    td { padding: 4px 14px 4px 0; vertical-align: top; }
+    td:first-child { white-space: nowrap; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Integração resiliente, na prática</h1>
+    <p>Um servidor que trava de propósito e aceita só 1 ligação a cada 300 ms. Dez clientes ligando para ele ao mesmo tempo.</p>
+
+    <div class="cartoes">
+      <a href="/mosaico.html?estrategia=1-sem-retry">
+        <strong>Mosaico de clientes</strong>
+        <span>10 clientes lado a lado + o painel do servidor. Troque a estratégia no topo e mostre o código de cada uma.</span>
+      </a>
+      <a href="/laboratorio/">
+        <strong>Laboratório</strong>
+        <span>Ajuste tentativas, backoff e jitter com sliders e veja, ao vivo, a taxa de sucesso e a carga no servidor.</span>
+      </a>
+      <a href="/painel.html">
+        <strong>Painel do servidor</strong>
+        <span>O que o servidor está recebendo, segundo a segundo.</span>
+      </a>
+    </div>
+
+    <h2>As regras do servidor</h2>
+    <table>
+      <tr><td><span class="ficha sucesso">200</span></td><td>Atendeu: devolve <code>{"status": "sucesso"}</code> depois de 100 a 200 ms</td></tr>
+      <tr><td><span class="ficha limite">429</span></td><td>Rate limit: outra ligação foi aceita há menos de 300 ms</td></tr>
+      <tr><td><span class="ficha timeout">⏱</span></td><td>Instável nos segundos terminados em 2, 3, 5 e 7: o atendente trava por 10 s; o cliente desiste em 2 s</td></tr>
+    </table>
+
+    <h2>As quatro estratégias</h2>
+    <ol>
+      <li><strong>Sem retry</strong>: liga uma vez. Falhou, falhou.</li>
+      <li><strong>Retry</strong>: liga de novo assim que recebe a resposta, até 10 vezes.</li>
+      <li><strong>Backoff exponencial</strong>: espera 1, 2, 4 s (e fica em 4 s) entre as tentativas.</li>
+      <li><strong>Backoff + jitter</strong>: a mesma espera, sorteada entre 50% e 150% do backoff, para os clientes não ligarem juntos.</li>
+    </ol>
+    <p>Todos os clientes fazem um pedido a cada 10 segundos (nos segundos :08, :18, :28…), no mesmo instante do relógio, como uma rotina agendada. Cada resposta do servidor leva de 100 a 200 ms.</p>
+  </main>
+</body>
+</html>

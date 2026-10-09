@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mosaico de Clientes</title>
+  <link rel="stylesheet" href="/estilo.css">
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      overflow: hidden;
+    }
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 12px;
+      border-bottom: 1px solid var(--borda);
+      background: var(--superficie);
+      flex-wrap: wrap;
+    }
+    nav strong { margin-right: 8px; }
+    nav a, nav button {
+      border: 1px solid var(--borda);
+      background: var(--fundo);
+      color: var(--texto);
+      border-radius: 6px;
+      padding: 5px 12px;
+      font: inherit;
+      font-size: 14px;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    nav a.ativa {
+      background: var(--destaque);
+      border-color: var(--destaque);
+      color: #fff;
+    }
+    nav .espaco { flex: 1; }
+    main {
+      flex: 1;
+      display: flex;
+      min-height: 0;
+    }
+    #grade {
+      flex: 1;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(3, 1fr);
+      gap: 6px;
+      padding: 6px;
+      min-width: 0;
+    }
+    #grade iframe {
+      width: 100%;
+      height: 100%;
+      border: 1px solid var(--borda);
+      border-radius: 8px;
+      background: var(--superficie);
+    }
+    #grade .servidor { grid-column: span 2; }
+    #codigo {
+      display: none;
+      width: 42%;
+      border-left: 1px solid var(--borda);
+      background: var(--superficie);
+      overflow: auto;
+      padding: 16px 20px;
+    }
+    #codigo.aberto { display: block; }
+    #codigo h2 { margin: 0 0 12px; font-size: 16px; color: var(--texto-suave); font-weight: 600; }
+    #codigo pre { margin: 0; font-size: 17px; line-height: 1.55; }
+  </style>
+</head>
+<body>
+  <nav>
+    <strong>10 clientes, 1 servidor</strong>
+    <a data-estrategia="1-sem-retry" href="?estrategia=1-sem-retry">1 · Sem retry</a>
+    <a data-estrategia="2-retry" href="?estrategia=2-retry">2 · Retry</a>
+    <a data-estrategia="3-backoff-exponencial" href="?estrategia=3-backoff-exponencial">3 · Backoff exponencial</a>
+    <a data-estrategia="4-backoff-com-jitter" href="?estrategia=4-backoff-com-jitter">4 · Backoff + jitter</a>
+    <span class="espaco"></span>
+    <button id="alternar-codigo">&lt;/&gt; código</button>
+    <a href="/laboratorio/">Laboratório</a>
+  </nav>
+
+  <main>
+    <div id="grade"></div>
+    <aside id="codigo">
+      <h2 id="arquivo"></h2>
+      <pre><code id="fonte"></code></pre>
+    </aside>
+  </main>
+
+  <script type="module">
+    const QUANTIDADE_DE_CLIENTES = 10;
+    const parametros = new URLSearchParams(location.search);
+    const estrategia = parametros.get("estrategia") ?? "1-sem-retry";
+    const intervalo = parametros.get("intervalo") ?? 10000;
+
+    function endereco(apelido) {
+      if (location.hostname !== "localhost") return location.origin;
+      return `${location.protocol}//${apelido}.localhost:${location.port}`;
+    }
+
+    document.querySelector(`[data-estrategia="${estrategia}"]`).classList.add("ativa");
+
+    const grade = document.querySelector("#grade");
+    for (let cliente = 1; cliente <= QUANTIDADE_DE_CLIENTES; cliente++) {
+      const quadro = document.createElement("iframe");
+      quadro.src = `${endereco(`c${cliente}`)}/clientes/cliente.html?estrategia=${estrategia}&cliente=${cliente}&intervalo=${intervalo}`;
+      grade.append(quadro);
+    }
+    const painel = document.createElement("iframe");
+    painel.className = "servidor";
+    painel.src = `${endereco("servidor")}/painel.html`;
+    grade.append(painel);
+
+    const resposta = await fetch(`/clientes/${estrategia}.js`);
+    document.querySelector("#arquivo").textContent = `clientes/${estrategia}.js`;
+    document.querySelector("#fonte").textContent = await resposta.text();
+    document.querySelector("#alternar-codigo").addEventListener("click", () => {
+      document.querySelector("#codigo").classList.toggle("aberto");
+    });
+  </script>
+</body>
+</html>
