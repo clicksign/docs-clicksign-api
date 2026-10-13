@@ -52,3 +52,7 @@ body:json {
   ]
 }
 }
+
+docs {
+  `deadline_at` inteiro vai de 1 a 90 dias. Acima de 90, zero, negativo ou quebrado, a publicação recusa. Omitido, a Assinatura usa o prazo padrão de 90 dias. O inteiro vira hoje em UTC mais esses dias.
+}

@@ -722,6 +722,7 @@
 					"item": [
 						{
 							"name": "Consent",
+							"description": "A mensagem inicial sai no WhatsApp em qualquer canal do disparo e exige telefone. Sem expiration_time, o aceite expira em 2 horas.",
 							"request": {
 								"method": "POST",
 								"header": [
@@ -1204,6 +1205,7 @@
 						},
 						{
 							"name": "Signature — template + configurações do envelope",
+							"description": "deadline_at inteiro vai de 1 a 90 dias. Acima de 90, zero, negativo ou quebrado, a publicação recusa. Omitido, a Assinatura usa o prazo padrão de 90 dias. O inteiro vira hoje em UTC mais esses dias.",
 							"request": {
 								"method": "POST",
 								"header": [
@@ -1984,6 +1986,7 @@
 						},
 						{
 							"name": "Verify — instructions",
+							"description": "Omitir instructions exibe a tela de instruções. Só false explícito oculta.",
 							"request": {
 								"method": "POST",
 								"header": [
