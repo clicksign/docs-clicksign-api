@@ -1,0 +1,39 @@
+meta {
+  name: Form — Injeção de dado do disparo no formulário
+  type: http
+  seq: 39
+}
+
+post {
+  url: https://{{host}}/api/v1/flows
+  body: json
+  auth: inherit
+}
+
+body:json {
+{
+  "name": "Injeção de dado do disparo no formulário",
+  "steps": [
+    {
+      "context": {
+        "context_map_keys": {
+          "nome-completo": {
+            "read_only": true,
+            "value": "{{person_name}}"
+          },
+          "numero-pedido": {
+            "read_only": true,
+            "value": "{{order_id}}"
+          }
+        },
+        "version_key": "versao-formulario-confirmacao"
+      },
+      "type": "form"
+    }
+  ]
+}
+}
+
+docs {
+  O `value` é só `{{chave}}`. `{{person_name}}` vem do contato. `{{order_id}}` vem do `context` do disparo. `"Pedido {{order_id}}"` não interpola.
+}

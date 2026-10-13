@@ -818,6 +818,45 @@
       "settingRebuildPath": true,
       "settingFollowRedirects": "global"
     },
+    {
+      "_type": "request",
+      "_id": "req_b7e4c1a09f2d4e6b8a3c5d7e9f014263",
+      "parentId": "fld_3a6a06bd110a43dcb95296c0942734a6",
+      "name": "Form — Injeção de dado do disparo no formulário",
+      "description": "",
+      "url": "https://{{host}}/api/v1/flows",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"name\": \"Injeção de dado do disparo no formulário\",\n  \"steps\": [\n    {\n      \"context\": {\n        \"context_map_keys\": {\n          \"nome-completo\": {\n            \"read_only\": true,\n            \"value\": \"{{person_name}}\"\n          },\n          \"numero-pedido\": {\n            \"read_only\": true,\n            \"value\": \"{{order_id}}\"\n          }\n        },\n        \"version_key\": \"versao-formulario-confirmacao\"\n      },\n      \"type\": \"form\"\n    }\n  ]\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "{{ access_token }}"
+        }
+      ],
+      "authentication": {
+        "type": "apikey",
+        "disabled": false,
+        "key": "Authorization",
+        "value": "{{ access_token }}",
+        "addTo": "header"
+      },
+      "metaSortKey": 1000000000005.5,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global"
+    },
     {
       "_type": "request",
       "_id": "req_46ffe53d5429418483de41a50d008062",
