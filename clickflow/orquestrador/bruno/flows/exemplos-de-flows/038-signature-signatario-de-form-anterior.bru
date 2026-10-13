@@ -1,0 +1,71 @@
+meta {
+  name: Signature — identidade do signatário vinda de form anterior
+  type: http
+  seq: 38
+}
+
+post {
+  url: https://{{host}}/api/v1/flows
+  body: json
+  auth: inherit
+}
+
+body:json {
+{
+  "name": "Proposta Crédito — fiador identificado por formulário anterior",
+  "steps": [
+    {
+      "context": {
+        "version_key": "versao-formulario-fiador"
+      },
+      "type": "form"
+    },
+    {
+      "context": {
+        "documents": [
+          {
+            "filename": "{{person_name}}.docx",
+            "kind": "template",
+            "template_key": "uuid-do-modelo-api-v3"
+          }
+        ],
+        "settings": {
+          "folder_key": "1fb29ab8-84c4-4856-be37-5fce0f17c11a",
+          "name": "Envelope {{person_name}}"
+        },
+        "signers": [
+          {
+            "auths": [
+              "liveness",
+              "whatsapp"
+            ],
+            "birthday": "{{person_birthday}}",
+            "documentation": "{{person_documentation}}",
+            "group": 1,
+            "name": "{{person_name}}",
+            "phone_number": "{{phone_number}}",
+            "roles": [
+              "sign"
+            ]
+          },
+          {
+            "auths": [
+              "liveness",
+              "whatsapp"
+            ],
+            "birthday": "{{data-nascimento-fiador}}",
+            "documentation": "{{cpf-fiador}}",
+            "group": 2,
+            "name": "{{nome-fiador}}",
+            "phone_number": "{{telefone-fiador}}",
+            "roles": [
+              "sign"
+            ]
+          }
+        ]
+      },
+      "type": "signature"
+    }
+  ]
+}
+}

@@ -1563,6 +1563,126 @@
 							"response": []
 						},
 						{
+							"name": "Signature — signatário extra com variável do disparo",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://{{host}}/api/v1/flows",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"flows"
+									]
+								},
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"Proposta Crédito — signatário extra com variável do disparo\",\n  \"steps\": [\n    {\n      \"context\": {\n        \"documents\": [\n          {\n            \"filename\": \"Contrato_{{order_id}}_{{person_name}}.pdf\",\n            \"kind\": \"file\",\n            \"s3_bucket\": \"bucket\",\n            \"s3_key\": \"contrato.pdf\"\n          }\n        ],\n        \"settings\": {\n          \"deadline_at\": 7,\n          \"default_message\": \"Pedido {{order_id}}.\",\n          \"default_subject\": \"Assine, {{person_name}}\",\n          \"name\": \"Envelope {{order_id}} — {{person_name}}\"\n        },\n        \"signers\": [\n          {\n            \"birthday\": \"{{person_birthday}}\",\n            \"documentation\": \"{{person_documentation}}\",\n            \"name\": \"{{person_name}}\",\n            \"phone_number\": \"{{phone_number}}\"\n          },\n          {\n            \"documentation\": \"{{spouse_cpf}}\",\n            \"email\": \"{{spouse_email}}\",\n            \"name\": \"{{spouse_name}}\",\n            \"phone_number\": \"{{spouse_phone}}\"\n          }\n        ]\n      },\n      \"type\": \"signature\"\n    }\n  ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "key",
+											"value": "Authorization",
+											"type": "string"
+										},
+										{
+											"key": "value",
+											"value": "{{access_token}}",
+											"type": "string"
+										},
+										{
+											"key": "in",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Signature — identidade do signatário vinda de form anterior",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{\n  \"name\": \"Proposta Crédito — fiador identificado por formulário anterior\",\n  \"steps\": [\n    {\n      \"context\": {\n        \"version_key\": \"versao-formulario-fiador\"\n      },\n      \"type\": \"form\"\n    },\n    {\n      \"context\": {\n        \"documents\": [\n          {\n            \"filename\": \"{{person_name}}.docx\",\n            \"kind\": \"template\",\n            \"template_key\": \"uuid-do-modelo-api-v3\"\n          }\n        ],\n        \"settings\": {\n          \"folder_key\": \"1fb29ab8-84c4-4856-be37-5fce0f17c11a\",\n          \"name\": \"Envelope {{person_name}}\"\n        },\n        \"signers\": [\n          {\n            \"auths\": [\n              \"liveness\",\n              \"whatsapp\"\n            ],\n            \"birthday\": \"{{person_birthday}}\",\n            \"documentation\": \"{{person_documentation}}\",\n            \"group\": 1,\n            \"name\": \"{{person_name}}\",\n            \"phone_number\": \"{{phone_number}}\",\n            \"roles\": [\n              \"sign\"\n            ]\n          },\n          {\n            \"auths\": [\n              \"liveness\",\n              \"whatsapp\"\n            ],\n            \"birthday\": \"{{data-nascimento-fiador}}\",\n            \"documentation\": \"{{cpf-fiador}}\",\n            \"group\": 2,\n            \"name\": \"{{nome-fiador}}\",\n            \"phone_number\": \"{{telefone-fiador}}\",\n            \"roles\": [\n              \"sign\"\n            ]\n          }\n        ]\n      },\n      \"type\": \"signature\"\n    }\n  ]\n}",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"flows"
+									]
+								},
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"Proposta Crédito — signatário extra com variável do disparo\",\n  \"steps\": [\n    {\n      \"context\": {\n        \"documents\": [\n          {\n            \"filename\": \"Contrato_{{order_id}}_{{person_name}}.pdf\",\n            \"kind\": \"file\",\n            \"s3_bucket\": \"bucket\",\n            \"s3_key\": \"contrato.pdf\"\n          }\n        ],\n        \"settings\": {\n          \"deadline_at\": 7,\n          \"default_message\": \"Pedido {{order_id}}.\",\n          \"default_subject\": \"Assine, {{person_name}}\",\n          \"name\": \"Envelope {{order_id}} — {{person_name}}\"\n        },\n        \"signers\": [\n          {\n            \"birthday\": \"{{person_birthday}}\",\n            \"documentation\": \"{{person_documentation}}\",\n            \"name\": \"{{person_name}}\",\n            \"phone_number\": \"{{phone_number}}\"\n          },\n          {\n            \"documentation\": \"{{spouse_cpf}}\",\n            \"email\": \"{{spouse_email}}\",\n            \"name\": \"{{spouse_name}}\",\n            \"phone_number\": \"{{spouse_phone}}\"\n          }\n        ]\n      },\n      \"type\": \"signature\"\n    }\n  ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "key",
+											"value": "Authorization",
+											"type": "string"
+										},
+										{
+											"key": "value",
+											"value": "{{access_token}}",
+											"type": "string"
+										},
+										{
+											"key": "in",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "Signature — modelo Tavola",
 							"request": {
 								"method": "POST",

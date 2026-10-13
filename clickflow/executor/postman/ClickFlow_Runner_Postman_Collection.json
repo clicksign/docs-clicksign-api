@@ -442,7 +442,7 @@
 						},
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"contact\": {\n    \"person_name\": \"Maria da Silva\",\n    \"phone_number\": \"5511999999999\"\n  },\n  \"context\": {\n    \"cpf_conjuge\": \"52998224725\",\n    \"produto\": \"auto\"\n  }\n}",
+							"raw": "{\n  \"channel\": \"whatsapp\",\n  \"contact\": {\n    \"person_name\": \"Maria Silva\",\n    \"person_documentation\": \"12345678909\",\n    \"person_birthday\": \"1990-01-01\",\n    \"phone_number\": \"+5511999999999\"\n  },\n  \"context\": {\n    \"order_id\": \"PED-1001\",\n    \"spouse_name\": \"João Silva\",\n    \"spouse_cpf\": \"529.982.247-25\",\n    \"spouse_phone\": \"+5511988887777\",\n    \"spouse_email\": \"joao@exemplo.com\"\n  }\n}",
 							"options": {
 								"raw": {
 									"language": "json"

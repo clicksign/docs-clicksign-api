@@ -1,0 +1,52 @@
+meta {
+  name: Signature — signatário extra com variável do disparo
+  type: http
+  seq: 37
+}
+
+post {
+  url: https://{{host}}/api/v1/flows
+  body: json
+  auth: inherit
+}
+
+body:json {
+{
+  "name": "Proposta Crédito — signatário extra com variável do disparo",
+  "steps": [
+    {
+      "context": {
+        "documents": [
+          {
+            "filename": "Contrato_{{order_id}}_{{person_name}}.pdf",
+            "kind": "file",
+            "s3_bucket": "bucket",
+            "s3_key": "contrato.pdf"
+          }
+        ],
+        "settings": {
+          "deadline_at": 7,
+          "default_message": "Pedido {{order_id}}.",
+          "default_subject": "Assine, {{person_name}}",
+          "name": "Envelope {{order_id}} — {{person_name}}"
+        },
+        "signers": [
+          {
+            "birthday": "{{person_birthday}}",
+            "documentation": "{{person_documentation}}",
+            "name": "{{person_name}}",
+            "phone_number": "{{phone_number}}"
+          },
+          {
+            "documentation": "{{spouse_cpf}}",
+            "email": "{{spouse_email}}",
+            "name": "{{spouse_name}}",
+            "phone_number": "{{spouse_phone}}"
+          }
+        ]
+      },
+      "type": "signature"
+    }
+  ]
+}
+}
