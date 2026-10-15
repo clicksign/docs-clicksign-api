@@ -1805,6 +1805,126 @@
 							"response": []
 						},
 						{
+							"name": "Signature — modelo + anexo do Form",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://{{host}}/api/v1/flows",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"flows"
+									]
+								},
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"Proposta Crédito — form + assinatura com anexo do form\",\n  \"steps\": [\n    {\n      \"context\": {\n        \"contact\": {\n          \"person_birthday\": \"person-birthday-b8f2a1c3d4e5\",\n          \"person_documentation\": \"person-documentation-d0349c5e8e90\",\n          \"person_name\": \"person-name-4e578ecaa76c\",\n          \"phone_number\": \"phone-number-3d172314e41b\"\n        },\n        \"version_key\": \"a0cfcec8-4d18-49a8-b6d1-85df293d5cb4\"\n      },\n      \"type\": \"form\"\n    },\n    {\n      \"context\": {\n        \"documents\": [\n          {\n            \"filename\": \"contrato.docx\",\n            \"kind\": \"template\",\n            \"template_key\": \"uuid-do-modelo-tavola\"\n          },\n          {\n            \"field_key\": \"upload-comprovante-abc1\",\n            \"kind\": \"form_attachment\"\n          }\n        ]\n      },\n      \"type\": \"signature\"\n    }\n  ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "key",
+											"value": "Authorization",
+											"type": "string"
+										},
+										{
+											"key": "value",
+											"value": "{{access_token}}",
+											"type": "string"
+										},
+										{
+											"key": "in",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Signature — modelo + template_mappings",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://{{host}}/api/v1/flows",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"flows"
+									]
+								},
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"Proposta Crédito — assinatura com de-para explícito\",\n  \"steps\": [\n    {\n      \"context\": {\n        \"version_key\": \"sua-form-version-key\"\n      },\n      \"type\": \"form\"\n    },\n    {\n      \"context\": {\n        \"documents\": [\n          {\n            \"filename\": \"contrato-proposta.docx\",\n            \"kind\": \"template\",\n            \"template_key\": \"uuid-do-modelo-tavola\",\n            \"template_mappings\": {\n              \"CPF_DO_PARTICIPANTE\": \"person-documentation-d0349c5e8e90\",\n              \"NOME_DO_PARTICIPANTE\": \"person-name-4e578ecaa76c\"\n            }\n          }\n        ],\n        \"settings\": {\n          \"folder_key\": \"1fb29ab8-84c4-4856-be37-5fce0f17c11a\"\n        }\n      },\n      \"type\": \"signature\"\n    }\n  ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "key",
+											"value": "Authorization",
+											"type": "string"
+										},
+										{
+											"key": "value",
+											"value": "{{access_token}}",
+											"type": "string"
+										},
+										{
+											"key": "in",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "Verify — liveness",
 							"request": {
 								"method": "POST",

@@ -1,0 +1,44 @@
+meta {
+  name: Signature — modelo + template_mappings
+  type: http
+  seq: 41
+}
+
+post {
+  url: https://{{host}}/api/v1/flows
+  body: json
+  auth: inherit
+}
+
+body:json {
+{
+  "name": "Proposta Crédito — assinatura com de-para explícito",
+  "steps": [
+    {
+      "context": {
+        "version_key": "sua-form-version-key"
+      },
+      "type": "form"
+    },
+    {
+      "context": {
+        "documents": [
+          {
+            "filename": "contrato-proposta.docx",
+            "kind": "template",
+            "template_key": "uuid-do-modelo-tavola",
+            "template_mappings": {
+              "CPF_DO_PARTICIPANTE": "person-documentation-d0349c5e8e90",
+              "NOME_DO_PARTICIPANTE": "person-name-4e578ecaa76c"
+            }
+          }
+        ],
+        "settings": {
+          "folder_key": "1fb29ab8-84c4-4856-be37-5fce0f17c11a"
+        }
+      },
+      "type": "signature"
+    }
+  ]
+}
+}
