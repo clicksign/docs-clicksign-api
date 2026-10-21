@@ -504,7 +504,7 @@
 						},
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"channel\": \"web\",\n  \"contact\": {\n    \"person_name\": \"Maria da Silva\"\n  }\n}",
+							"raw": "{\n  \"channel\": \"web\",\n  \"contact\": {\n    \"person_name\": \"Maria da Silva\",\n    \"phone_number\": \"5511999999999\"\n  }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
