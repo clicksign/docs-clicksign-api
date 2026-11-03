@@ -473,7 +473,7 @@
       "_id": "req_execute_callback_url",
       "parentId": "fld_b81e2c3806394ca9b611106a1312e4ac",
       "name": "Inicia execução — com webhook",
-      "description": "callback_url é opcional. Sem o campo, nenhum evento é enviado. Eventos: execution.started, step.started, step.finished, execution.finished. Cada um sai uma vez. Falha de entrega não interrompe a execução. O corpo traz event_id, event, occurred_at e execution, no mesmo formato do GET da execução. A URL precisa ser https absoluta, com host e sem usuário ou senha. URL inválida responde 400 e não cria a execução.",
+      "description": "callback_url é opcional. Sem o campo, nenhum evento é enviado. Eventos: execution.started, step.started, step.finished, execution.finished. Cada um sai uma vez. Falha de entrega não interrompe a execução. O corpo traz event_id, event, occurred_at, execution (mesmo formato do GET da execução) e steps (mesmo formato do GET /executions/{execution_id}/steps). steps vazio significa que ainda não há etapa. Se steps não vier, a leitura falhou e o evento chega mesmo assim. O webhook passa a conter dados pessoais, como respostas de formulário, IP e geolocalização da assinatura. A URL precisa ser https absoluta, com host e sem usuário ou senha. URL inválida responde 400 e não cria a execução.",
       "url": "https://{{host}}/api/v1/flows/{{flow_id}}/execute",
       "method": "POST",
       "body": {
