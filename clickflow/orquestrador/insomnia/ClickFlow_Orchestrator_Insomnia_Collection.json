@@ -1171,6 +1171,45 @@
     },
     {
       "_type": "request",
+      "_id": "req_signature_signer_contact",
+      "parentId": "fld_3a6a06bd110a43dcb95296c0942734a6",
+      "name": "Signature — atributos do signatário da esteira",
+      "description": "`signers[]` define autenticação, papel e avisos de cada signatário. Um item altera quem passa pela esteira. Vários signatários usam o mesmo payload, com mais itens.",
+      "url": "https://{{host}}/api/v1/flows",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"name\": \"Proposta Crédito — atributos do signatário da esteira\",\n  \"steps\": [\n    {\n      \"context\": {\n        \"documents\": [\n          {\n            \"filename\": \"{{person_name}}.docx\",\n            \"kind\": \"template\",\n            \"template_key\": \"uuid-do-modelo-api-v3\"\n          }\n        ],\n        \"settings\": {\n          \"folder_key\": \"1fb29ab8-84c4-4856-be37-5fce0f17c11a\",\n          \"name\": \"Envelope {{person_name}}\"\n        },\n        \"signers\": [\n          {\n            \"auths\": [\n              \"liveness\",\n              \"whatsapp\"\n            ],\n            \"birthday\": \"{{person_birthday}}\",\n            \"communicate_events\": {\n              \"document_signed\": \"whatsapp\",\n              \"signature_reminder\": \"email\",\n              \"signature_request\": \"whatsapp\"\n            },\n            \"documentation\": \"{{person_documentation}}\",\n            \"email\": \"{{person_email}}\",\n            \"has_documentation\": true,\n            \"name\": \"{{person_name}}\",\n            \"phone_number\": \"{{phone_number}}\",\n            \"refusable\": false,\n            \"roles\": [\n              \"sign\"\n            ]\n          }\n        ]\n      },\n      \"type\": \"signature\"\n    }\n  ]\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "{{ access_token }}"
+        }
+      ],
+      "authentication": {
+        "type": "apikey",
+        "disabled": false,
+        "key": "Authorization",
+        "value": "{{ access_token }}",
+        "addTo": "header"
+      },
+      "metaSortKey": 1000000000013.25,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global"
+    },
+    {
+      "_type": "request",
       "_id": "req_signature_signers_context",
       "parentId": "fld_3a6a06bd110a43dcb95296c0942734a6",
       "name": "Signature — signatário extra com variável do disparo",

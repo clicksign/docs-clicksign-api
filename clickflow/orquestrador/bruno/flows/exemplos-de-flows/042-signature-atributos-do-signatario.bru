@@ -1,0 +1,62 @@
+meta {
+  name: Signature — atributos do signatário da esteira
+  type: http
+  seq: 42
+}
+
+post {
+  url: https://{{host}}/api/v1/flows
+  body: json
+  auth: inherit
+}
+
+docs {
+  `signers[]` define autenticação, papel e avisos de cada signatário. Um item altera quem passa pela esteira. Vários signatários usam o mesmo payload, com mais itens.
+}
+
+body:json {
+{
+  "name": "Proposta Crédito — atributos do signatário da esteira",
+  "steps": [
+    {
+      "context": {
+        "documents": [
+          {
+            "filename": "{{person_name}}.docx",
+            "kind": "template",
+            "template_key": "uuid-do-modelo-api-v3"
+          }
+        ],
+        "settings": {
+          "folder_key": "1fb29ab8-84c4-4856-be37-5fce0f17c11a",
+          "name": "Envelope {{person_name}}"
+        },
+        "signers": [
+          {
+            "auths": [
+              "liveness",
+              "whatsapp"
+            ],
+            "birthday": "{{person_birthday}}",
+            "communicate_events": {
+              "document_signed": "whatsapp",
+              "signature_reminder": "email",
+              "signature_request": "whatsapp"
+            },
+            "documentation": "{{person_documentation}}",
+            "email": "{{person_email}}",
+            "has_documentation": true,
+            "name": "{{person_name}}",
+            "phone_number": "{{phone_number}}",
+            "refusable": false,
+            "roles": [
+              "sign"
+            ]
+          }
+        ]
+      },
+      "type": "signature"
+    }
+  ]
+}
+}
