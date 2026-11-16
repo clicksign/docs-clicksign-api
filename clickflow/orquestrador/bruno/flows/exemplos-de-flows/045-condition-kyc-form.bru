@@ -1,0 +1,44 @@
+meta {
+  name: Condition — form só se o KYC aprovar
+  type: http
+  seq: 45
+}
+
+post {
+  url: https://{{host}}/api/v1/flows
+  body: json
+  auth: inherit
+}
+
+body:json {
+{
+  "name": "Formulário só se o KYC aprovar",
+  "steps": [
+    {
+      "context": {
+        "authentication": "biometric_behavior",
+        "result_policy": "passthrough"
+      },
+      "type": "verify"
+    },
+    {
+      "context": {
+        "type": "customer"
+      },
+      "type": "kyc"
+    },
+    {
+      "context": {
+        "version_key": "sua-form-version-key"
+      },
+      "condition": {
+        "step_id": 2,
+        "field": "decision",
+        "operator": "equals",
+        "value": "approved"
+      },
+      "type": "form"
+    }
+  ]
+}
+}

@@ -1561,6 +1561,87 @@
     },
     {
       "_type": "request",
+      "_id": "req_documentscopy_verify",
+      "parentId": "fld_3a6a06bd110a43dcb95296c0942734a6",
+      "name": "Verify — documentscopy",
+      "description": "Documentoscopia. Nome e CPF são obrigatórios.",
+      "url": "https://{{host}}/api/v1/flows",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"name\": \"Proposta Crédito — verify documentscopy\",\n  \"steps\": [\n    {\n      \"context\": {\n        \"authentication\": \"documentscopy\"\n      },\n      \"type\": \"verify\"\n    }\n  ]\n}"
+      },
+      "parameters": [],
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" },
+        { "name": "Authorization", "value": "{{ access_token }}" }
+      ],
+      "authentication": { "type": "apikey", "disabled": false, "key": "Authorization", "value": "{{ access_token }}", "addTo": "header" },
+      "metaSortKey": 1000000000018.1,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global"
+    },
+    {
+      "_type": "request",
+      "_id": "req_documentscopy_kyc",
+      "parentId": "fld_3a6a06bd110a43dcb95296c0942734a6",
+      "name": "KYC — documentscopy + kyc (CPF)",
+      "description": "Com passthrough, o KYC usa a captura da documentoscopia.",
+      "url": "https://{{host}}/api/v1/flows",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"name\": \"Proposta Crédito — verify documentscopy + kyc (CPF)\",\n  \"steps\": [\n    {\n      \"context\": {\n        \"authentication\": \"documentscopy\",\n        \"result_policy\": \"passthrough\"\n      },\n      \"type\": \"verify\"\n    },\n    {\n      \"context\": {\n        \"type\": \"customer\"\n      },\n      \"type\": \"kyc\"\n    }\n  ]\n}"
+      },
+      "parameters": [],
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" },
+        { "name": "Authorization", "value": "{{ access_token }}" }
+      ],
+      "authentication": { "type": "apikey", "disabled": false, "key": "Authorization", "value": "{{ access_token }}", "addTo": "header" },
+      "metaSortKey": 1000000000018.2,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global"
+    },
+    {
+      "_type": "request",
+      "_id": "req_condition_kyc_form",
+      "parentId": "fld_3a6a06bd110a43dcb95296c0942734a6",
+      "name": "Condition — form só se o KYC aprovar",
+      "description": "Sem correspondência, o form fecha como completed e não executa.",
+      "url": "https://{{host}}/api/v1/flows",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"name\": \"Formulário só se o KYC aprovar\",\n  \"steps\": [\n    {\n      \"context\": {\n        \"authentication\": \"biometric_behavior\",\n        \"result_policy\": \"passthrough\"\n      },\n      \"type\": \"verify\"\n    },\n    {\n      \"context\": {\n        \"type\": \"customer\"\n      },\n      \"type\": \"kyc\"\n    },\n    {\n      \"context\": {\n        \"version_key\": \"sua-form-version-key\"\n      },\n      \"condition\": {\n        \"step_id\": 2,\n        \"field\": \"decision\",\n        \"operator\": \"equals\",\n        \"value\": \"approved\"\n      },\n      \"type\": \"form\"\n    }\n  ]\n}"
+      },
+      "parameters": [],
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" },
+        { "name": "Authorization", "value": "{{ access_token }}" }
+      ],
+      "authentication": { "type": "apikey", "disabled": false, "key": "Authorization", "value": "{{ access_token }}", "addTo": "header" },
+      "metaSortKey": 1000000000018.3,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global"
+    },
+    {
+      "_type": "request",
       "_id": "req_a839e107747f41bab0bc6235f4236e0b",
       "parentId": "fld_3a6a06bd110a43dcb95296c0942734a6",
       "name": "Verify — instructions",

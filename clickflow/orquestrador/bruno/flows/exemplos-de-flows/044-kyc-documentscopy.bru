@@ -1,0 +1,32 @@
+meta {
+  name: KYC — documentscopy + kyc (CPF)
+  type: http
+  seq: 44
+}
+
+post {
+  url: https://{{host}}/api/v1/flows
+  body: json
+  auth: inherit
+}
+
+body:json {
+{
+  "name": "Proposta Crédito — verify documentscopy + kyc (CPF)",
+  "steps": [
+    {
+      "context": {
+        "authentication": "documentscopy",
+        "result_policy": "passthrough"
+      },
+      "type": "verify"
+    },
+    {
+      "context": {
+        "type": "customer"
+      },
+      "type": "kyc"
+    }
+  ]
+}
+}
