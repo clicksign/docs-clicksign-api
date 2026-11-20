@@ -1174,7 +1174,7 @@
       "_id": "req_signature_signer_contact",
       "parentId": "fld_3a6a06bd110a43dcb95296c0942734a6",
       "name": "Signature — atributos do signatário da esteira",
-      "description": "`signers[]` define autenticação, papel e avisos de cada signatário. Um item altera quem passa pela esteira. Vários signatários usam o mesmo payload, com mais itens.",
+      "description": "`signers[]` define autenticação, papel e avisos de cada signatário. Um item com os placeholders do contato mantém a identidade de quem passa pela esteira e altera como essa pessoa assina. Vários signatários usam o mesmo payload, com mais itens.",
       "url": "https://{{host}}/api/v1/flows",
       "method": "POST",
       "body": {
