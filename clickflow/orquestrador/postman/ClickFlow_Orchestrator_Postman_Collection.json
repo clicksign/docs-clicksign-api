@@ -2226,6 +2226,60 @@
 							"response": []
 						},
 						{
+							"name": "Verify — documentscopy",
+							"request": {
+								"method": "POST",
+								"header": [
+									{ "key": "Authorization", "value": "{{access_token}}", "type": "text" },
+									{ "key": "Content-Type", "value": "application/json", "type": "text" }
+								],
+								"url": { "raw": "https://{{host}}/api/v1/flows", "protocol": "https", "host": ["{{host}}"], "path": ["api", "v1", "flows"] },
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"Proposta Crédito — verify documentscopy\",\n  \"steps\": [\n    {\n      \"context\": {\n        \"authentication\": \"documentscopy\"\n      },\n      \"type\": \"verify\"\n    }\n  ]\n}",
+									"options": { "raw": { "language": "json" } }
+								},
+								"auth": { "type": "apikey", "apikey": [ { "key": "key", "value": "Authorization", "type": "string" }, { "key": "value", "value": "{{access_token}}", "type": "string" }, { "key": "in", "value": "header", "type": "string" } ] }
+							},
+							"response": []
+						},
+						{
+							"name": "KYC — documentscopy + kyc (CPF)",
+							"request": {
+								"method": "POST",
+								"header": [
+									{ "key": "Authorization", "value": "{{access_token}}", "type": "text" },
+									{ "key": "Content-Type", "value": "application/json", "type": "text" }
+								],
+								"url": { "raw": "https://{{host}}/api/v1/flows", "protocol": "https", "host": ["{{host}}"], "path": ["api", "v1", "flows"] },
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"Proposta Crédito — verify documentscopy + kyc (CPF)\",\n  \"steps\": [\n    {\n      \"context\": {\n        \"authentication\": \"documentscopy\",\n        \"result_policy\": \"passthrough\"\n      },\n      \"type\": \"verify\"\n    },\n    {\n      \"context\": {\n        \"type\": \"customer\"\n      },\n      \"type\": \"kyc\"\n    }\n  ]\n}",
+									"options": { "raw": { "language": "json" } }
+								},
+								"auth": { "type": "apikey", "apikey": [ { "key": "key", "value": "Authorization", "type": "string" }, { "key": "value", "value": "{{access_token}}", "type": "string" }, { "key": "in", "value": "header", "type": "string" } ] }
+							},
+							"response": []
+						},
+						{
+							"name": "Condition — form só se o KYC aprovar",
+							"request": {
+								"method": "POST",
+								"header": [
+									{ "key": "Authorization", "value": "{{access_token}}", "type": "text" },
+									{ "key": "Content-Type", "value": "application/json", "type": "text" }
+								],
+								"url": { "raw": "https://{{host}}/api/v1/flows", "protocol": "https", "host": ["{{host}}"], "path": ["api", "v1", "flows"] },
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"Formulário só se o KYC aprovar\",\n  \"steps\": [\n    {\n      \"context\": {\n        \"authentication\": \"biometric_behavior\",\n        \"result_policy\": \"passthrough\"\n      },\n      \"type\": \"verify\"\n    },\n    {\n      \"context\": {\n        \"type\": \"customer\"\n      },\n      \"type\": \"kyc\"\n    },\n    {\n      \"context\": {\n        \"version_key\": \"sua-form-version-key\"\n      },\n      \"condition\": {\n        \"step_id\": 2,\n        \"field\": \"decision\",\n        \"operator\": \"equals\",\n        \"value\": \"approved\"\n      },\n      \"type\": \"form\"\n    }\n  ]\n}",
+									"options": { "raw": { "language": "json" } }
+								},
+								"auth": { "type": "apikey", "apikey": [ { "key": "key", "value": "Authorization", "type": "string" }, { "key": "value", "value": "{{access_token}}", "type": "string" }, { "key": "in", "value": "header", "type": "string" } ] }
+							},
+							"response": []
+						},
+						{
 							"name": "Verify — instructions",
 							"description": "Omitir instructions exibe a tela de instruções. Só false explícito oculta.",
 							"request": {
